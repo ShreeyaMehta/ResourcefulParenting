@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#03DAC5</color>
+    <color name="colorAccent">#3700B3</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="orange">#ff6724</color>
+    <color name="lightSemiBlack">#33000000</color>
+    <color name="blue">#5346cf</color>
+    <color name="orange_top">#ff803b</color>
+    <color name="orange_bottom">#ff5a00</color>
+    <color name="blue_top">#00c0ff</color>
+    <color name="blue_bottom">#03a8de</color>
+    <color name="appbar_top">#b0e5f6</color>
+    <color name="appbar_bottom">#fafeff</color>
+    <color name="account_odd">#f5fcfe</color>
+    <color name="account_even"> #e5f7fc</color>
+    <color name="card_view_bg"> #f3fbfe</color>
+    <color name="change_profile_btn">#14d8bf</color>
+    <color name="red_top">#ff0018</color>
+    <color name="red_bottom">#f30e03</color>
+    <color name="light_orange_top">#ffd851</color>
+    <color name="light_orange_bottom">#fdb33f</color>
+    <color name="target_activity_bg">#03a9e0</color>
+    <color name="description_bg">#f3fbfd</color>
+    <color name="milestone_bg">#3e61e4</color>
+    <color name="navigation_bg">#fbf6f0</color>
+    <color name="language">#f95746</color>
+    <color name="logic">#023bf9</color>
+    <color name="physical">#eb008b</color>
+    <color name="intrapersonal">#8d2890</color>
+    <color name="interpersonal">#efb858</color>
+    <color name="spatial">#bf1f2f</color>
+    <color name="music">#344595</color>
+    <color name="environment">#96E43A</color>
+    <color name="circle_points_earned">#14d8bf</color>
+    <color name="activty_list_bg">#f5fdff</color>
+
+</resources>

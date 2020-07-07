@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">Resourceful Parenting</string>
+
+    <string name="register">Register</string>
+    <string name="parent_name">Parent Name</string>
+    <string name="parent_no">Mobile No.</string>
+    <string name="email">Email ID</string>
+    <string name="password">Password</string>
+    <string name="signin">Sign in</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="fb">Login With Facebook</string>
+    <string name="register_fb">Register With Facebook</string>
+    <string name="login">Login</string>
+    <string name="or">OR</string>
+    <string name="new_member">New Member?</string>
+
+    <string name="how_old_is_child">How old is your child?</string>
+    <string name="bday_details">Child Birthday Details</string>
+    <string-array name="date">
+        <item>Date</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="month">
+        <item>Month</item>
+    </string-array>
+    <string-array name="year">
+        <item>Year</item>
+    </string-array>
+    <string name="next">Next</string>
+
+    <string name="whats_child_name">Whats your child</string>
+    <string name="child_name">Child Name</string>
+    <string name="get_started">Get Started</string>
+
+    <string name="home">HOME</string>
+    <string name="explorer">EXPLORER</string>
+    <string name="activity">ACTIVITY</string>
+    <string name="account">MY ACCOUNT</string>
+    <string name="milestone">Milestone</string>
+
+    <string name="general">General</string>
+    <string name="set_parent_name">Set Parent Name</string>
+    <string name="change_password">Change Password</string>
+    <string name="about_us">About Us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="children">Children</string>
+    <string name="child1">Child1</string>
+    <string name="child2">Child2</string>
+    <string name="logout">Logout</string>
+
+    <string name="recover_password">Recover Password</string>
+    <string name="retrive_password">Retrive Password</string>
+    <string name="retrive_text">To retrive your password enter your email id below and then click on retrive password.</string>
+
+    <string name="old_password">OLd Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="submit">Submit</string>
+
+    <string name="change_profile_photo">Change Profile Photo</string>
+    <string-array name="birth_month">
+        <item>Birth Month</item>
+    </string-array>
+    <string-array name="birth_year">
+        <item>Birth Year</item>
+    </string-array>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="delete">Delete</string>
+
+    <string name="add_child">Add Child</string>
+
+    <string name="category1">Category 1</string>
+    <string name="category2">Category 2</string>
+    <string name="questions">Questions</string>
+
+    <string name="activity_completed">Activities Completed</string>
+    <string name="points_earned">Points Earned</string>
+    <string name="todays_target_activity">Today\'s Target Activity </string>
+    <string name="environment">Environmental</string>
+    <string name="points">Points</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="description">Description</string>
+    <string name="see_learning">See What Your Child is learning from this activity</string>
+    <string name="learning">Learning</string>
+    <string name="we_did_it">We Did It</string>
+    <string name="milestone_reminder">Mile Stone Reminder</string>
+
+    <string name="title">Title</string>
+    <string name="short_description">Short Description</string>
+
+    <string name="category_name">Category Name</string>
+
+    <string name="mcq">Multiple Intelligence Questionaire</string>
+
+
+</resources>

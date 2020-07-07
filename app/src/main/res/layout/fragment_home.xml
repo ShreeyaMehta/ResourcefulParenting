@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
+
+   <androidx.core.widget.NestedScrollView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <ImageView
+               android:id="@+id/add_child"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:src="@drawable/add_child"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="30dp"
+               android:layout_marginRight="30dp"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               android:contentDescription="@string/add_child" />
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/child_name"
+               android:layout_width="100dp"
+               android:layout_height="30dp"
+               android:layout_marginTop="10dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginLeft="30dp"
+               app:cardCornerRadius="20dp"
+               app:layout_constraintTop_toBottomOf="@id/add_child"
+               app:layout_constraintStart_toStartOf="parent">
+               <Spinner
+                   android:id="@+id/spin_child_name"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   style="@style/spinnerTheme"
+                   android:background="@color/milestone_bg"/>
+
+           </androidx.cardview.widget.CardView>
+           
+           <androidx.cardview.widget.CardView
+               android:id="@+id/holder"
+               android:layout_width="0dp"
+               android:layout_height="120dp"
+               android:layout_marginTop="30dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="20dp"
+               app:cardCornerRadius="20dp"
+               app:layout_constraintTop_toBottomOf="@id/child_name"
+               app:layout_constraintEnd_toStartOf="@id/holder1"
+               app:layout_constraintStart_toStartOf="parent"
+               android:layout_marginLeft="30dp"
+               android:layout_marginRight="20dp">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@drawable/activities_completed_bg">
+
+                   <TextView
+                       android:id="@+id/num_of_activity_completed"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="0"
+                       android:layout_marginTop="30dp"
+                       android:textSize="40sp"
+                       android:textColor="@color/white"
+                       app:layout_constraintTop_toTopOf="parent"/>
+
+                   <TextView
+                       android:id="@+id/tv_activities_completed"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="@string/activity_completed"
+                       android:textSize="12sp"
+                       android:textColor="@color/white"
+                       app:layout_constraintTop_toBottomOf="@id/num_of_activity_completed"/>
+
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+           </androidx.cardview.widget.CardView>
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/holder1"
+               android:layout_width="0dp"
+               android:layout_height="120dp"
+               android:layout_marginTop="30dp"
+               android:layout_marginEnd="30dp"
+               app:cardCornerRadius="20dp"
+               app:layout_constraintStart_toEndOf="@id/holder"
+               app:layout_constraintTop_toBottomOf="@id/child_name"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_marginRight="30dp">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@drawable/activities_completed_bg">
+
+                   <ImageView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:src="@drawable/pointsbadge"
+                       android:layout_marginEnd="10dp"
+                       android:layout_marginTop="5dp"
+                       android:layout_marginRight="10dp" />
+
+                   <TextView
+                       android:id="@+id/num_of_points_earned"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="0"
+                       android:layout_marginTop="30dp"
+                       android:textSize="40sp"
+                       android:textColor="@color/white"
+                       app:layout_constraintTop_toTopOf="parent"/>
+
+                   <TextView
+                       android:id="@+id/tv_points_earned"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="@string/points_earned"
+                       android:textSize="12sp"
+                       android:textColor="@color/white"
+                       app:layout_constraintTop_toBottomOf="@id/num_of_points_earned"/>
+
+               </androidx.constraintlayout.widget.ConstraintLayout>
+           </androidx.cardview.widget.CardView>
+
+           <TextView
+               android:id="@+id/tv_todays_target"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="30dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="30dp"
+               android:text="@string/todays_target_activity"
+               android:textAllCaps="false"
+               android:textColor="@color/black"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/holder" />
+
+           <androidx.cardview.widget.CardView
+               android:id="@+id/target_holder"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+               android:layout_marginEnd="30dp"
+               android:layout_marginStart="30dp"
+               android:backgroundTint="@color/target_activity_bg"
+               app:cardCornerRadius="10dp"
+               app:layout_constraintTop_toBottomOf="@id/tv_todays_target">
+
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:id="@+id/show_hide_activity_details"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/target_icon"
+                   android:layout_width="40dp"
+                   android:layout_height="50dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="10dp"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:src="@drawable/environment_white_icon"
+                   android:layout_gravity="center_vertical"/>
+
+               <TextView
+                   android:id="@+id/tv_target_activity"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:text="@string/environment"
+                   android:textAllCaps="false"
+                   android:textColor="@color/white"
+                   android:textSize="20sp"
+                   app:layout_constraintEnd_toStartOf="@id/num_of_points"
+                   app:layout_constraintStart_toEndOf="@id/target_icon"
+                   app:layout_constraintTop_toTopOf="parent" />
+
+                   <TextView
+                       android:id="@+id/num_of_points"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="10"
+                       android:layout_marginTop="10dp"
+                       android:layout_marginStart="10dp"
+                       android:textSize="20sp"
+                       android:textStyle="bold"
+                       android:textColor="@color/white"
+                       app:layout_constraintTop_toTopOf="parent"
+                       app:layout_constraintEnd_toStartOf="@id/minus"
+                       app:layout_constraintStart_toEndOf="@id/tv_target_activity"/>
+
+                   <TextView
+                       android:id="@+id/tv_points"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/points"
+                       android:layout_marginStart="10dp"
+                       android:textSize="12sp"
+                       android:textColor="@color/white"
+                       app:layout_constraintEnd_toStartOf="@id/minus"
+                       app:layout_constraintTop_toBottomOf="@id/num_of_points"
+                       app:layout_constraintStart_toEndOf="@id/tv_target_activity"/>
+
+                   <ImageView
+                       android:id="@+id/minus"
+                       android:layout_width="25dp"
+                       android:layout_height="25dp"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="10dp"
+                       android:layout_marginTop="22dp"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:src="@drawable/minus"/>
+               </androidx.constraintlayout.widget.ConstraintLayout>
+           </androidx.cardview.widget.CardView>
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/home_activity"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:visibility="gone"
+               app:layout_constraintTop_toBottomOf="@id/target_holder">
+
+           <TextView
+               android:id="@+id/tv_activity_name"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="25dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="30dp"
+               android:text="@string/activity_name"
+               android:textAllCaps="false"
+               android:textColor="@color/black"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/home_edt_description"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="12dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="30dp"
+               app:hintEnabled="false"
+               android:theme="@style/TextInputLayoutAppearance"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_activity_name">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="80dp"
+                   android:background="@drawable/rounded_rectangle_stroke_bg"
+                   app:backgroundTint="@color/description_bg"
+                   android:hint="@string/description"
+                   android:inputType="text"
+                   android:gravity="top|left"
+                   android:maxLength="320"
+                   android:padding="5dp"
+                   android:textSize="16sp" />
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <TextView
+               android:id="@+id/tv_see_learning"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="25dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="30dp"
+               android:text="@string/see_learning"
+               android:textAllCaps="false"
+               android:textColor="@color/black"
+               android:textSize="20sp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/home_edt_description" />
+
+           <com.google.android.material.textfield.TextInputLayout
+               android:id="@+id/edt_learning"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="12dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginEnd="30dp"
+               app:hintEnabled="false"
+               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_see_learning">
+
+               <com.google.android.material.textfield.TextInputEditText
+                   android:layout_width="match_parent"
+                   android:layout_height="80dp"
+                   android:background="@drawable/rounded_rectangle_stroke_bg"
+                   app:backgroundTint="@color/description_bg"
+                   android:hint="@string/learning"
+                   android:gravity="top|left"
+                   android:maxLength="320"
+                   android:padding="5dp"
+                   android:textSize="16sp" />
+           </com.google.android.material.textfield.TextInputLayout>
+
+           <ImageView
+               android:id="@+id/home_camera"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="30dp"
+               android:layout_marginTop="20dp"
+               android:src="@drawable/camera"
+               app:layout_constraintTop_toBottomOf="@id/edt_learning"
+               app:layout_constraintStart_toStartOf="parent"/>
+
+           <ImageView
+               android:id="@+id/home_video"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="14dp"
+               android:layout_marginTop="20dp"
+               android:src="@drawable/video"
+               app:layout_constraintTop_toBottomOf="@id/edt_learning"
+               app:layout_constraintStart_toEndOf="@id/home_camera"/>
+
+           <ImageView
+               android:id="@+id/home_share"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="14dp"
+               android:layout_marginTop="20dp"
+               android:src="@drawable/share"
+               app:layout_constraintTop_toBottomOf="@id/edt_learning"
+               app:layout_constraintStart_toEndOf="@id/home_video"/>
+
+           <ImageView
+               android:id="@+id/home_alarm"
+               android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="14dp"
+               android:layout_marginTop="20dp"
+               android:src="@drawable/alarm"
+               app:layout_constraintTop_toBottomOf="@id/edt_learning"
+               app:layout_constraintStart_toEndOf="@id/home_share"/>
+
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btn_register"
+               android:layout_width="0dp"
+               android:layout_height="40dp"
+               android:layout_marginStart="14dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginEnd="30dp"
+               android:textSize="13sp"
+               android:text="@string/we_did_it"
+               android:textColor="@color/white"
+               android:textAllCaps="false"
+               android:background="@drawable/orange_bg"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/edt_learning"
+               app:layout_constraintStart_toEndOf="@id/home_alarm" />
+
+           <ImageView
+               android:id="@+id/home_img"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="30dp"
+               android:layout_marginTop="20dp"
+               android:src="@drawable/boy"
+               app:layout_constraintTop_toBottomOf="@id/home_camera"
+               app:layout_constraintStart_toStartOf="parent"/>
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/milestone_layout"
+               android:layout_width="match_parent"
+               android:layout_height="70dp"
+               android:layout_marginTop="20dp"
+               android:background="@color/milestone_bg"
+               app:layout_constraintTop_toBottomOf="@id/home_activity">
+
+               <ImageView
+                   android:id="@+id/reminder_img"
+                   android:layout_width="40dp"
+                   android:layout_height="40dp"
+                   android:src="@drawable/reminder"
+                   android:layout_marginTop="15dp"
+                   android:layout_marginStart="10dp"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"/>
+
+               <TextView
+                   android:id="@+id/tv_milestone_reminder"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginStart="10dp"
+                   android:text="@string/milestone_reminder"
+                   android:textAllCaps="false"
+                   android:textColor="@color/white"
+                   android:textSize="18sp"
+                   app:layout_constraintStart_toEndOf="@id/reminder_img"
+                   app:layout_constraintTop_toTopOf="parent"
+                   android:layout_marginLeft="10dp" />
+
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/btn_milestone"
+                   android:layout_width="0dp"
+                   android:layout_height="40dp"
+                   android:layout_marginStart="17dp"
+                   android:layout_marginTop="15dp"
+                   android:layout_marginEnd="15dp"
+                   android:padding="10dp"
+                   android:textSize="15sp"
+                   android:text="@string/milestone"
+                   android:textColor="@color/white"
+                   android:textAllCaps="false"
+                   android:background="@drawable/orange_bg"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   android:layout_marginLeft="17dp"
+                   android:layout_marginRight="15dp" />
+
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+           <com.github.mikephil.charting.charts.PieChart
+               android:id="@+id/pie_Chart"
+               android:layout_width="match_parent"
+               android:layout_height="400dp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:layout_marginStart="10dp"
+               android:layout_marginEnd="10dp"
+               android:layout_marginTop="50dp"
+               app:layout_constraintTop_toBottomOf="@id/milestone_layout"/>
+
+           <Space
+               android:layout_width="match_parent"
+               android:layout_height="50dp"
+               app:layout_constraintTop_toBottomOf="@id/pie_Chart"/>
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </androidx.core.widget.NestedScrollView>
+</FrameLayout>
