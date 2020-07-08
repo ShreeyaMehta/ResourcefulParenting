@@ -1,10 +1,13 @@
 package com.resourcefulparenting;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,49 +15,64 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import static android.media.CamcorderProfile.get;
 
 public class ChildAgeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private Context context;
     private Button next;
     private Spinner date, month, year;
-    private int date_, month_, year_;
-    private long age;
+    private int date_;
+    private int month_;
+    private int year_;
+    private int age;
+    ArrayList<Integer> years;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_age);
         context = this;
         String access = getIntent().getStringExtra("access_token");
+
         next = findViewById(R.id.btn_next);
         date = findViewById(R.id.date);
         month = findViewById(R.id.month);
         year = findViewById(R.id.year);
         next.setOnClickListener(view -> {
-            age = getAge(year_, month_, date_);
-            if(age <= 2) {
-                Intent next = new Intent(context, MainActivity.class);
+            year_ = years.get(year.getSelectedItemPosition());
+            month_ = Integer.parseInt(month.getItemAtPosition(month.getSelectedItemPosition()).toString());
+            date_ = Integer.parseInt(date.getItemAtPosition(date.getSelectedItemPosition()).toString());
+            int ages = Integer.parseInt(getAge(year_, month_, date_));
+            if(ages > 3) {
+                Intent next = new Intent(context, QuestionaireActivity.class);
                 next.putExtra("access_token", access);
                 startActivity(next);
-            }else if(age > 2) {
-                Intent next = new Intent(context, QuestionaireActivity.class);
+            }else {
+                Intent next = new Intent(context, MainActivity.class);
                 next.putExtra("access_token", access);
                 startActivity(next);
             }
         });
 
-        ArrayList<String> years = new ArrayList<String>();
+        years = new ArrayList<Integer>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = 2010; i <= thisYear; i++) {
-            years.add(Integer.toString(i));
+            years.add(i);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, years);
+        Comparator comparator = Collections.reverseOrder();
+        Collections.sort(years, comparator);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(context, android.R.layout.simple_spinner_item, years);
         year.setAdapter(adapter);
 
         List<Integer> dates = new ArrayList<>();
@@ -114,36 +132,40 @@ public class ChildAgeActivity extends AppCompatActivity implements AdapterView.O
         // attaching data adapter to spinner
         month.setAdapter(dataAdapter1);
 
-        date_ = Integer.parseInt(date.getSelectedItem().toString());
+     /* year_ = Integer.parseInt(year.getSelectedItem().toString());
         month_ = Integer.parseInt(month.getSelectedItem().toString());
-        year_ = Integer.parseInt(year.getSelectedItem().toString());
+        date_ = Integer.parseInt(date.getSelectedItem().toString());
+*/
+       // year_ = (int) year.getSelectedItem();
+
+     //   month_ = (int) month.getSelectedItem();
+    //    date_ = (int) date.getSelectedItem();
+        Log.d("Year", String.valueOf(year_));
+        Log.d("Month", String.valueOf(month_));
+        Log.d("Year", String.valueOf(date_));
+
 
 
     }
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String item = adapterView.getItemAtPosition(i).toString();
     }
 
-    public int getAge (int _year, int _month, int _day) {
+    public String getAge(int year, int month, int day){
+        Calendar dob = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
 
-        GregorianCalendar cal = new GregorianCalendar();
-        int y, m, d, a;
+        dob.set(year, month, day);
 
-        y = cal.get(Calendar.YEAR);
-        m = cal.get(Calendar.MONTH);
-        d = cal.get(Calendar.DAY_OF_MONTH);
-        cal.set(_year, _month, _day);
-        a = y - cal.get(Calendar.YEAR);
-        if ((m < cal.get(Calendar.MONTH))
-                || ((m == cal.get(Calendar.MONTH)) && (d < cal
-                .get(Calendar.DAY_OF_MONTH)))) {
-            --a;
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            age--;
         }
-        if(a < 0)
-            throw new IllegalArgumentException("Age < 0");
-        return a;
-    }
 
+        Integer ageInt = new Integer(age);
+        String ageS = ageInt.toString();
+        return ageS;
+    }
 }

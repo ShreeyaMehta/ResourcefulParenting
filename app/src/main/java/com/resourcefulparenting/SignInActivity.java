@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class SignInActivity extends AppCompatActivity {
     private SharedPreferences settings;
     private boolean isloggedin;
     final LoginCheck loginCheck = new LoginCheck();
+    private RelativeLayout loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class SignInActivity extends AppCompatActivity {
             } else if (password.isEmpty()) {
                 edt_password.setError("Password Required");
             } else {
+                loading.setVisibility(View.VISIBLE);
                 getLogin();
             }
         });
@@ -99,10 +103,10 @@ public class SignInActivity extends AppCompatActivity {
                     editor.putString("access",response.body().login_token);
                     editor.putString("id", String.valueOf(response.body().userdetails.user_id));
                     editor.apply();
+                    loading.setVisibility(View.GONE);
                     if(email.equals(loginCheck.email) && password.equals(loginCheck.password)){
-
+                        loading.setVisibility(View.GONE);
                         Log.d("Success", String.valueOf(response.body().userdetails.user_id));
-
                         Intent home_page = new Intent(context, MainActivity.class);
                         home_page.putExtra("access_token", response.body().login_token);
                         startActivity(home_page);
@@ -135,5 +139,6 @@ public class SignInActivity extends AppCompatActivity {
         edt_email = findViewById(R.id.signin_edt_email);
         edt_password = findViewById(R.id.signin_edt_password);
         login = findViewById(R.id.btn_login);
+        loading = findViewById(R.id.loading);
     }
 }

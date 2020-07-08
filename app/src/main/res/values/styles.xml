@@ -15,7 +15,7 @@
         <item name="backgroundTint">@color/change_profile_btn</item>
     </style>
 
-    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+    <style name="TextInputLayoutAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!-- Customize your theme here. -->
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/colorPrimary</item>

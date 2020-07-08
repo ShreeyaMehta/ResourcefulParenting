@@ -1,26 +1,30 @@
 package com.resourcefulparenting;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
+import android.view.MenuItem;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements MyAccountGeneralFragment.InsideAccount,
         ActivityListingFragment.activities, ActivityPageFragment.activityPage {
 
-    MeowBottomNavigation bottomNavigation;
+    //MeowBottomNavigation bottomNavigation;
+    BottomNavigationView bottomNavigation;
     private final static int Id_Home = 1;
     private final static int Id_Explorer = 2;
     private final static int Id_Activity = 3;
     private final static int Id_Account = 4;
-    private String login_token, user_id;
+    private String login_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,32 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
         login_token = getIntent().getStringExtra("access_token");
 
         bottomNavigation = findViewById(R.id.navigation);
-        bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
+
+        bottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_home:
+                    bottomNavigation.setItemIconTintList(null);
+                    loadFragment(new HomeFragment());
+                    return true;
+                case R.id.navigation_explorer:
+                    bottomNavigation.setItemIconTintList(null);
+                    loadFragment(new ExplorerFragment());
+                    return true;
+                case R.id.navigation_activity:
+                    bottomNavigation.setItemIconTintList(null);
+                    loadFragment(new ActivityListingFragment());
+                    return true;
+                case R.id.navigation_account:
+                    bottomNavigation.setItemIconTintList(null);
+                    loadFragment(new MyAccountGeneralFragment());
+                    return true;
+            }
+            return false;
+        });
+
+        bottomNavigation.setSelectedItemId(R.id.navigation_home);
+
+       /* bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.ic_home));
         bottomNavigation.add(new MeowBottomNavigation.Model(2, R.drawable.ic_explorer));
         bottomNavigation.add(new MeowBottomNavigation.Model(3, R.drawable.ic_activity));
         bottomNavigation.add(new MeowBottomNavigation.Model(4, R.drawable.myaccount_icon));
@@ -38,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
         bottomNavigation.setOnClickMenuListener(item -> Log.d("Show", String.valueOf(item.getId())));
 
         bottomNavigation.setOnShowListener(item -> {
+            Log.d("MainActivity", String.valueOf(item));
+
             switch (item.getId()){
                 case Id_Home:
                     loadFragment(new HomeFragment());
@@ -54,7 +85,34 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
                     break;
             }
         });
-        bottomNavigation.show(Id_Home, true);
+
+      /*  bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
+            @Override
+            public void onShowItem(MeowBottomNavigation.Model item) {
+
+            }
+        });*/
+
+
+       /* bottomNavigation.show(Id_Home, true);
+
+        bottomNavigation.setOnReselectListener(item -> {
+            switch (item.getId()){
+                case Id_Home:
+                    loadFragment(new HomeFragment());
+                    bottomNavigation.setSelected(true);
+                    break;
+                case Id_Explorer:
+                    loadFragment(new ExplorerFragment());
+                    break;
+                case Id_Activity:
+                    loadFragment(new ActivityListingFragment());
+                    break;
+                case Id_Account:
+                    loadFragment(new MyAccountGeneralFragment());
+                    break;
+            }
+        });*/
     }
 
     private void loadFragment(Fragment fragment) {

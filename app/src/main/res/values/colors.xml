@@ -36,5 +36,6 @@
     <color name="environment">#96E43A</color>
     <color name="circle_points_earned">#14d8bf</color>
     <color name="activty_list_bg">#f5fdff</color>
+    <color name="border_listing">#d5d5d5</color>
 
 </resources>

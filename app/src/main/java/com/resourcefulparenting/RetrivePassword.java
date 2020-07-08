@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,6 +28,7 @@ public class RetrivePassword extends AppCompatActivity {
     private Context context;
     private String emailid;
     final ForgotPasswordCheck forgotPasswordCheck = new ForgotPasswordCheck();
+    RelativeLayout loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class RetrivePassword extends AppCompatActivity {
             if(emailid.isEmpty()){
                 edt_email_id.setError("Email Recovered");
             }else{
+                loading.setVisibility(View.VISIBLE);
                 getForgotPassword();
             }
         });
@@ -55,6 +59,7 @@ public class RetrivePassword extends AppCompatActivity {
                 if(emailid.equals(forgotPasswordCheck.email)){
                     Toast.makeText(context, response.body().message, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(context, SignInActivity.class));
+                    loading.setVisibility(View.GONE);
                 }else {
                     Toast.makeText(context, response.body().message, Toast.LENGTH_SHORT).show();
                 }
@@ -77,5 +82,6 @@ public class RetrivePassword extends AppCompatActivity {
     private void ids() {
         edt_email_id = findViewById(R.id.edt_recover_email_id);
         retrive = findViewById(R.id.btn_retrive_password);
+        loading = findViewById(R.id.loading);
     }
 }

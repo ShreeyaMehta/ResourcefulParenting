@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private String parent_name,mobile_no,email_id,password, login_token, user_id;
     private SharedPreferences settings;
     private boolean isloggedin;
+    private RelativeLayout loading;
 
     final RegisterCheck registerCheck = new RegisterCheck();
 
@@ -70,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
             }else if (password.isEmpty()) {
                 edt_password.setError("Password Required");
             } else {
+                loading.setVisibility(View.VISIBLE);
                 getRegister();
             }
 
@@ -82,11 +86,11 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                 Log.d("response", String.valueOf(response.body()));
-
                 SharedPreferences.Editor editor=settings.edit();
                 editor.putBoolean("firstRun",true);
                 editor.putString("access",response.body().login_token);
                 editor.apply();
+                loading.setVisibility(View.GONE);
                 Intent home_page = new Intent(context, ChildNameActivity.class);
                 home_page.putExtra("access_token", response.body().login_token);
                 startActivity(home_page);
@@ -113,6 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
         edt_mobile_no = findViewById(R.id.edt_parent_no);
         edt_email_id = findViewById(R.id.edt_register_email);
         edt_password = findViewById(R.id.edt_register_password);
+        loading = findViewById(R.id.loading);
     }
 
 }

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class MyAccountGeneralFragment extends Fragment {
     final LogoutCheck logoutCheck = new LogoutCheck();
     private Context context;
     private String login_token, user_id;
+    private RelativeLayout loading;
 
     public MyAccountGeneralFragment() {
         // Required empty public constructor
@@ -58,16 +60,18 @@ public class MyAccountGeneralFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView milestone =getActivity().findViewById(R.id.milestone_img);
+        loading = view.findViewById(R.id.loading);
         milestone.setVisibility(View.GONE);
 
         TextView setParentsName =view.findViewById(R.id.account_set_parent_name_text);
-      //  TextView change_password =view.findViewById(R.id.account_change_password_text);
-      //  TextView child1 = view.findViewById(R.id.account_1_text);
+        TextView change_password =view.findViewById(R.id.account_change_password_text);
+        TextView child1 = view.findViewById(R.id.account_1_text);
         Button logout = view.findViewById(R.id.btn_logout);
         setParentsName.setOnClickListener(view1 -> ((InsideAccount)getActivity()).setName());
-      //  change_password.setOnClickListener(view12 -> ((InsideAccount)getActivity()).changePassword());
-     //   child1.setOnClickListener(view1 -> ((InsideAccount)getActivity()).changeProfile());
+        change_password.setOnClickListener(view12 -> ((InsideAccount)getActivity()).changePassword());
+        child1.setOnClickListener(view1 -> ((InsideAccount)getActivity()).changeProfile());
         logout.setOnClickListener(view12 -> {
+           loading.setVisibility(View.VISIBLE);
             getLogout();
         });
     }
@@ -77,13 +81,13 @@ public class MyAccountGeneralFragment extends Fragment {
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                Toast.makeText(context, response.message(), Toast.LENGTH_SHORT).show();
                 if(login_token.equals(logoutCheck.login_token)) {
                     SharedPreferences settings = getActivity().getSharedPreferences("prefs", 0);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.clear();
                     editor.apply();
                     startActivity(new Intent(context, SignInActivity.class));
+                    loading.setVisibility(View.GONE);
                 }
             }
             @Override

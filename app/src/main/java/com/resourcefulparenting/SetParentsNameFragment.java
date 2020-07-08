@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,6 +29,8 @@ public class SetParentsNameFragment extends Fragment {
     private String login_token, parents_Name;
     private Button submit;
     final SetParentNameCheck setParentNameCheck = new SetParentNameCheck();
+    private RelativeLayout loading;
+
 
     public SetParentsNameFragment() {
         // Required empty public constructor
@@ -43,6 +46,7 @@ public class SetParentsNameFragment extends Fragment {
 
         edt_parent_name = view.findViewById(R.id.edt_set_parent_name);
         submit = view.findViewById(R.id.btn_set_parent_name_submit);
+        loading = view.findViewById(R.id.loading);
 
         parents_Name = edt_parent_name.getEditText().getText().toString();
 
@@ -61,6 +65,7 @@ public class SetParentsNameFragment extends Fragment {
             if(parents_Name.isEmpty()){
                 edt_parent_name.setError("Required");
             }else{
+               loading.setVisibility(View.VISIBLE);
                 getParentName();
             }
 
@@ -73,7 +78,9 @@ public class SetParentsNameFragment extends Fragment {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                 if(login_token.equals(setParentNameCheck.login_token) && parents_Name.equals(setParentNameCheck.parent_name)){
+                   loading.setVisibility(View.GONE);
                     Toast.makeText(getActivity(), response.body().message, Toast.LENGTH_SHORT).show();
+
                 }else {
                     Toast.makeText(getActivity(), response.body().message, Toast.LENGTH_SHORT).show();
                 }
