@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sigin_bg"
-    tools:context=".SignInActivity">
+    android:fitsSystemWindows="true"
+    tools:context="com.resourcefulparenting.activity.SignInActivity">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_signin"
@@ -106,25 +119,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageView
         android:id="@+id/btn_fb"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="52dp"
         android:layout_marginLeft="52dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="52dp"
         android:layout_marginRight="52dp"
-        android:backgroundTint="@color/blue"
-        android:padding="10dp"
-        android:text="@string/fb"
-        android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login"
-        app:shapeAppearance="@style/MaterialButton" />
+        android:src="@drawable/fb"
+        android:scaleType="fitXY"/>
 
     <View
         android:id="@+id/view1"
@@ -195,6 +203,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_new_member" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_register1"/>
+
     <RelativeLayout
         android:id="@+id/loading"
         android:layout_width="wrap_content"
@@ -217,5 +230,10 @@
         android:indeterminate="true" />
     </LinearLayout>
     </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+</RelativeLayout>

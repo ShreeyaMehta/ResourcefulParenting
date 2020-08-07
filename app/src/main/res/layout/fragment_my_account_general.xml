@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MyAccountGeneralFragment">
+    tools:context="com.resourcefulparenting.fragment.MyAccountGeneralFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -116,30 +116,10 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/account_1_text"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_child_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:layout_marginTop="30dp"
-                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-                android:drawablePadding="16dp"
-                android:text="@string/child1"
-                android:background="@color/account_even"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/account_2_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-                android:drawablePadding="16dp"
-                android:text="@string/child2"
-                android:background="@color/account_odd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="16sp" />
+                android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_logout"

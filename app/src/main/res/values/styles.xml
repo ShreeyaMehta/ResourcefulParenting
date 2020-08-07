@@ -25,4 +25,10 @@
     <style name="spinnerTheme">
         <item name="backgroundColor">@color/milestone_bg</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--@color/active_tab_color-->
+        <item name="colorPrimary">@color/black</item>
+    </style>
 </resources>

@@ -4,28 +4,28 @@
 
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/home_selection"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/home"/>
 
     <item
         android:id="@+id/navigation_explorer"
-        android:icon="@drawable/ic_explorer"
+        android:icon="@drawable/explorer_selection"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/explorer"/>
 
     <item
         android:id="@+id/navigation_activity"
-        android:icon="@drawable/ic_activity"
+        android:icon="@drawable/activity_selection"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/activity"/>
 
     <item
         android:id="@+id/navigation_account"
-        android:icon="@drawable/ic_myaccount"
+        android:icon="@drawable/account_selection"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:title="@string/account"/>

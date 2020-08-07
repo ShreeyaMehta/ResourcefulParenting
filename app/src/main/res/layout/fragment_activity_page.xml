@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ActivityPageFragment">
+    tools:context="com.resourcefulparenting.fragment.ActivityPageFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/activitypage_img"
@@ -52,6 +53,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_activity_name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_shortdescription1"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@drawable/rounded_rectangle_stroke_bg"
@@ -66,68 +68,41 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/test1"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/edt_shortdescription">
 
-            <ImageView
-                android:id="@+id/activity_img_"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/sigin_bg"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="fitXY"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/tv_ac_name"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/activity_name"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/activity_img_"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_category_name"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/category_name"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/activity_img_"
-                app:layout_constraintTop_toTopOf="@id/tv_ac_name" />
 
-            <ImageView
-                android:id="@+id/points_img_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/arrow_green"
-                android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <ImageView
-                android:id="@+id/tick_img_"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/correct_tick_green"
-                android:layout_marginTop="30dp"
-                app:layout_constraintEnd_toStartOf="@id/points_img_"
-                app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.8">
+            <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+        </LinearLayout>
+    </RelativeLayout>
+
 </FrameLayout>

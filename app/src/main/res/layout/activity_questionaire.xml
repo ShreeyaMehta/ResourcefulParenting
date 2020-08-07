@@ -9,7 +9,7 @@
     tools:context=".QuestionaireActivity">
 
     <TextView
-        android:id="@+id/tv_recover"
+        android:id="@+id/tv_know_abt_ur_child"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_question"
+        android:id="@+id/outside_tv_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -32,11 +32,11 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/tv_recover"
-        app:layout_constraintTop_toBottomOf="@id/tv_recover"/>
+        app:layout_constraintStart_toStartOf="@id/tv_know_abt_ur_child"
+        app:layout_constraintTop_toBottomOf="@id/tv_know_abt_ur_child"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rate_1"
+        android:id="@+id/outside_rate_1"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
@@ -47,10 +47,10 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_question" />
+        app:layout_constraintTop_toBottomOf="@id/outside_tv_question" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rate_2"
+        android:id="@+id/outside_rate_2"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -60,11 +60,11 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/rate_1"
-        app:layout_constraintTop_toBottomOf="@id/tv_question" />
+        app:layout_constraintStart_toEndOf="@id/outside_rate_1"
+        app:layout_constraintTop_toBottomOf="@id/outside_tv_question" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rate_3"
+        android:id="@+id/outside_rate_3"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -74,11 +74,11 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/rate_2"
-        app:layout_constraintTop_toBottomOf="@id/tv_question" />
+        app:layout_constraintStart_toEndOf="@id/outside_rate_2"
+        app:layout_constraintTop_toBottomOf="@id/outside_tv_question" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rate_4"
+        android:id="@+id/outside_rate_4"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -88,11 +88,11 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/rate_3"
-        app:layout_constraintTop_toBottomOf="@id/tv_question" />
+        app:layout_constraintStart_toEndOf="@id/outside_rate_3"
+        app:layout_constraintTop_toBottomOf="@id/outside_tv_question" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/rate_5"
+        android:id="@+id/outside_rate_5"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="10dp"
@@ -102,11 +102,11 @@
         android:padding="5dp"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/rate_4"
-        app:layout_constraintTop_toBottomOf="@id/tv_question" />
+        app:layout_constraintStart_toEndOf="@id/outside_rate_4"
+        app:layout_constraintTop_toBottomOf="@id/outside_tv_question" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/back"
+        android:id="@+id/outside_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -118,10 +118,10 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rate_1" />
+        app:layout_constraintTop_toBottomOf="@id/outside_rate_1" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/next"
+        android:id="@+id/outside_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
@@ -133,7 +133,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rate_1" />
+        app:layout_constraintTop_toBottomOf="@id/outside_rate_1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

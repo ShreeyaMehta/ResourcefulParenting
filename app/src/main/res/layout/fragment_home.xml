@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mainLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context="com.resourcefulparenting.fragment.HomeFragment">
 
    <androidx.core.widget.NestedScrollView
        android:layout_width="match_parent"
@@ -256,32 +257,22 @@
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toTopOf="parent" />
 
-           <com.google.android.material.textfield.TextInputLayout
+           <TextView
                android:id="@+id/home_edt_description"
-               android:layout_width="0dp"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginTop="12dp"
                android:layout_marginStart="30dp"
                android:layout_marginEnd="30dp"
-               app:hintEnabled="false"
-               style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+               android:text="@string/description"
+               android:maxLength="320"
+               android:padding="15dp"
+               android:textSize="16sp"
+               android:background="@drawable/rounded_rectangle_stroke_bg"
+               app:backgroundTint="@color/description_bg"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/tv_activity_name">
-
-               <com.google.android.material.textfield.TextInputEditText
-                   android:layout_width="match_parent"
-                   android:layout_height="80dp"
-                   android:background="@drawable/rounded_rectangle_stroke_bg"
-                   app:backgroundTint="@color/description_bg"
-                   android:hint="@string/description"
-                   android:inputType="text"
-                   android:gravity="top|left"
-                   android:maxLength="320"
-                   android:padding="5dp"
-                   android:textSize="16sp" />
-           </com.google.android.material.textfield.TextInputLayout>
-
+               app:layout_constraintTop_toBottomOf="@+id/tv_activity_name"/>
            <TextView
                android:id="@+id/tv_see_learning"
                android:layout_width="match_parent"
@@ -296,30 +287,23 @@
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintTop_toBottomOf="@id/home_edt_description" />
 
-           <com.google.android.material.textfield.TextInputLayout
+           <TextView
                android:id="@+id/edt_learning"
-               android:layout_width="0dp"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginTop="12dp"
                android:layout_marginStart="30dp"
                android:layout_marginEnd="30dp"
-               app:hintEnabled="false"
-               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+               android:text="@string/learning"
+
+               android:maxLength="320"
+               android:padding="15dp"
+               android:textSize="16sp"
+               android:background="@drawable/rounded_rectangle_stroke_bg"
+               app:backgroundTint="@color/description_bg"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/tv_see_learning">
-
-               <com.google.android.material.textfield.TextInputEditText
-                   android:layout_width="match_parent"
-                   android:layout_height="80dp"
-                   android:background="@drawable/rounded_rectangle_stroke_bg"
-                   app:backgroundTint="@color/description_bg"
-                   android:hint="@string/learning"
-                   android:gravity="top|left"
-                   android:maxLength="320"
-                   android:padding="5dp"
-                   android:textSize="16sp" />
-           </com.google.android.material.textfield.TextInputLayout>
+               app:layout_constraintTop_toBottomOf="@+id/tv_see_learning"/>
 
            <ImageView
                android:id="@+id/home_camera"
@@ -383,24 +367,34 @@
                android:layout_height="wrap_content"
                android:layout_marginStart="30dp"
                android:layout_marginTop="20dp"
-               android:src="@drawable/boy"
+               android:visibility="gone"
                app:layout_constraintTop_toBottomOf="@id/home_camera"
                app:layout_constraintStart_toStartOf="parent"/>
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_list"
+                   android:layout_width="match_parent"
+                   android:layout_margin="10dp"
+                   android:layout_height="match_parent"
+                   app:layout_constraintTop_toBottomOf="@id/home_camera"
+                   app:layout_constraintStart_toStartOf="parent"/>
+
+
 
            </androidx.constraintlayout.widget.ConstraintLayout>
 
            <androidx.constraintlayout.widget.ConstraintLayout
                android:id="@+id/milestone_layout"
                android:layout_width="match_parent"
-               android:layout_height="70dp"
+               android:layout_height="60dp"
                android:layout_marginTop="20dp"
                android:background="@color/milestone_bg"
                app:layout_constraintTop_toBottomOf="@id/home_activity">
 
                <ImageView
                    android:id="@+id/reminder_img"
-                   android:layout_width="40dp"
-                   android:layout_height="40dp"
+                   android:layout_width="35dp"
+                   android:layout_height="35dp"
                    android:src="@drawable/reminder"
                    android:layout_marginTop="15dp"
                    android:layout_marginStart="10dp"
@@ -412,11 +406,11 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="20dp"
-                   android:layout_marginStart="10dp"
+                   android:layout_marginStart="5dp"
                    android:text="@string/milestone_reminder"
                    android:textAllCaps="false"
                    android:textColor="@color/white"
-                   android:textSize="18sp"
+                   android:textSize="14sp"
                    app:layout_constraintStart_toEndOf="@id/reminder_img"
                    app:layout_constraintTop_toTopOf="parent"
                    android:layout_marginLeft="10dp" />
@@ -425,9 +419,7 @@
                    android:id="@+id/btn_milestone"
                    android:layout_width="0dp"
                    android:layout_height="40dp"
-                   android:layout_marginStart="17dp"
-                   android:layout_marginTop="15dp"
-                   android:layout_marginEnd="15dp"
+                   android:layout_margin="10dp"
                    android:padding="10dp"
                    android:textSize="15sp"
                    android:text="@string/milestone"
@@ -445,18 +437,38 @@
            <com.github.mikephil.charting.charts.PieChart
                android:id="@+id/pie_Chart"
                android:layout_width="match_parent"
-               android:layout_height="400dp"
+               android:layout_height="500dp"
                app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
                android:layout_marginStart="10dp"
                android:layout_marginEnd="10dp"
-               android:layout_marginTop="20dp"
+               android:visibility="gone"
+               android:layout_marginTop="30dp"
                app:layout_constraintTop_toBottomOf="@id/milestone_layout"/>
 
            <Space
                android:layout_width="match_parent"
-               android:layout_height="50dp"
+               android:layout_height="90dp"
                app:layout_constraintTop_toBottomOf="@id/pie_Chart"/>
        </androidx.constraintlayout.widget.ConstraintLayout>
    </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.8">
+            <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+        </LinearLayout>
+    </RelativeLayout>
+
 </FrameLayout>
