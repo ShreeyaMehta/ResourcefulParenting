@@ -8,13 +8,9 @@
     android:background="@drawable/sigin_bg"
     tools:context="com.resourcefulparenting.activity.AddChildQuestions">
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -41,6 +37,7 @@
                 android:gravity="center"
                 android:text="@string/Know_about_ur_child"
                 android:textAllCaps="false"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +55,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:fontFamily="@font/brandongrotesque_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_recover"/>
 
@@ -153,6 +151,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@color/black"
                 android:text="Back"
+                android:fontFamily="@font/brandongrotesque_regular"
                 android:padding="10dp"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -168,6 +167,7 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/orange_bg"
                 android:text="@string/next"
+                android:fontFamily="@font/brandongrotesque_regular"
                 android:padding="10dp"
                 android:textAllCaps="true"
                 android:textColor="@color/white"

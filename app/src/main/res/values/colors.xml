@@ -26,14 +26,31 @@
     <color name="description_bg">#f3fbfd</color>
     <color name="milestone_bg">#3e61e4</color>
     <color name="navigation_bg">#fbf6f0</color>
-    <color name="language">#f95746</color>
-    <color name="logic">#023bf9</color>
-    <color name="physical">#eb008b</color>
-    <color name="intrapersonal">#8d2890</color>
-    <color name="interpersonal">#efb858</color>
-    <color name="spatial">#bf1f2f</color>
+
+    <color name="language">#FF5842</color>
+    <color name="language_dark">#8a1104</color>
+
+    <color name="logic">#003AFA</color>
+    <color name="logic_dark">#011f84</color>
+
+    <color name="physical">#EB008B</color>
+    <color name="physical_dark">#890051</color>
+
+    <color name="intrapersonal">#90278E</color>
+    <color name="intrapersonal_dark">#421343</color>
+
+    <color name="interpersonal">#FECB00</color>
+    <color name="interpersonal_dark">#895c0d</color>
+
+    <color name="spatial">#BE1E2D</color>
+    <color name="spatial_dark">#7b141e</color>
+
     <color name="music">#344595</color>
+    <color name="music_dark">#013336</color>
+
     <color name="environment">#96E43A</color>
+    <color name="environment_dark">#005839</color>
+
     <color name="circle_points_earned">#14d8bf</color>
     <color name="activty_list_bg">#f5fdff</color>
     <color name="border_listing">#d5d5d5</color>

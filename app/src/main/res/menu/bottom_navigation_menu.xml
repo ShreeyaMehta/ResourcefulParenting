@@ -6,6 +6,7 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/home_selection"
         android:enabled="true"
+        android:fontFamily="@font/brandon_grotesque_bold"
         app:showAsAction="ifRoom"
         android:title="@string/home"/>
 
@@ -13,6 +14,7 @@
         android:id="@+id/navigation_explorer"
         android:icon="@drawable/explorer_selection"
         android:enabled="true"
+        android:fontFamily="@font/brandon_grotesque_bold"
         app:showAsAction="ifRoom"
         android:title="@string/explorer"/>
 
@@ -20,6 +22,7 @@
         android:id="@+id/navigation_activity"
         android:icon="@drawable/activity_selection"
         android:enabled="true"
+        android:fontFamily="@font/brandon_grotesque_bold"
         app:showAsAction="ifRoom"
         android:title="@string/activity"/>
 
@@ -27,6 +30,7 @@
         android:id="@+id/navigation_account"
         android:icon="@drawable/account_selection"
         android:enabled="true"
+        android:fontFamily="@font/brandon_grotesque_bold"
         app:showAsAction="ifRoom"
         android:title="@string/account"/>
 

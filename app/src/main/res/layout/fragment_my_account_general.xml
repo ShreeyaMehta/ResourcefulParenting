@@ -21,6 +21,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:text="@string/parent_name"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -30,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:text="@string/email"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/black"
@@ -41,6 +43,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:text="@string/general"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -54,6 +57,7 @@
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawablePadding="16dp"
                 android:text="@string/set_parent_name"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:background="@color/account_even"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="16sp" />
@@ -65,6 +69,7 @@
                 android:padding="12dp"
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawablePadding="16dp"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:text="@string/change_password"
                 android:background="@color/account_odd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -77,10 +82,12 @@
                 android:padding="12dp"
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawablePadding="16dp"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:text="@string/about_us"
                 android:background="@color/account_even"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="16sp" />
+
 
             <TextView
                 android:id="@+id/account_terms_text"
@@ -90,6 +97,7 @@
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawablePadding="16dp"
                 android:text="@string/terms"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:background="@color/account_odd"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="16sp" />
@@ -103,6 +111,7 @@
                 android:drawablePadding="16dp"
                 android:text="@string/privacy_policy"
                 android:background="@color/account_even"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="16sp" />
 
@@ -111,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/brandon_grotesque_medium"
                 android:text="@string/children"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/black"
@@ -134,6 +144,7 @@
                 android:padding="10dp"
                 android:text="@string/logout"
                 android:textAllCaps="true"
+                android:fontFamily="@font/brandongrotesque_regular"
                 android:textColor="@color/white"
                 android:textSize="16sp"/>
 

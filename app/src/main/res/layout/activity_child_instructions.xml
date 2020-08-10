@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="30dp">
+        android:layout_margin="15dp">
 
         <ImageView
             android:id="@+id/img_back"
@@ -21,29 +21,35 @@
             android:layout_height="40dp"
             app:srcCompat="@drawable/back_red"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="Read the following statements and assess how well they apply to your children."/>
+        "
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:textSize="12sp"
+            android:fontFamily="@font/brandon_grotesque_medium"
+            android:gravity="center"
+            android:text="Baca pernyataan berikut ini dan nilai seberapa cocoknya anak Anda dengan
+pernyataan tersebut."
             android:textColor="@color/black"
-            android:text="1: Statement does not describe my child at all."/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/brandon_grotesque_medium"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:text="1: Pernyataan ini tidak menggambarkan anak saya sama sekali."/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:fontFamily="@font/brandon_grotesque_medium"
             android:textColor="@color/black"
             android:text="2: Statement does not describe my child well."/>
 
@@ -51,25 +57,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:fontFamily="@font/brandon_grotesque_medium"
             android:textColor="@color/black"
-            android:text="3: Statement describes my child somewhat."/>
+            android:text="3: Pernyataan ini tidak terlalu menggambarkan anak saya."/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
+            android:fontFamily="@font/brandon_grotesque_medium"
             android:textColor="@color/black"
-            android:text="4: Statement describes my child well."/>
+            android:text="4: Pernyataan ini cukup menggambarkan anak saya."/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/black"
-            android:text="5: Statement describes my child very well."/>
+            android:fontFamily="@font/brandon_grotesque_medium"
+            android:text="5: Pernyataan ini sangat menggambarkan anak saya."/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_ok"
@@ -79,6 +88,7 @@
             android:background="@drawable/orange_bg"
             android:padding="10dp"
             android:text="OK"
+            android:fontFamily="@font/brandon_grotesque_medium"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="16sp" />

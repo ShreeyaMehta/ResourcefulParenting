@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Resourceful Parenting</string>
+    <string name="app_name">RPI</string>
     <string name="default_notification_channel_id">Notification</string>
     <string name="register">Register</string>
     <string name="parent_name">Tim</string>
@@ -39,11 +39,11 @@
     <string name="milestone">Milestone</string>
 
     <string name="general">Umum</string>
-    <string name="set_parent_name">nama orang tua</string>
-    <string name="change_password">ubah sandi</string>
-    <string name="about_us">tentang kami</string>
-    <string name="privacy_policy">kebijakan privasi</string>
-    <string name="terms">syarat dan ketentuan</string>
+    <string name="set_parent_name">Nama orang tua</string>
+    <string name="change_password">Ubah sandi</string>
+    <string name="about_us">Tentang kami</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="terms">Syarat dan ketentuan</string>
     <string name="children">Anak</string>
     <string name="child1">Child1</string>
     <string name="child2">Child2</string>
@@ -53,22 +53,22 @@
     <string name="retrive_password">Retrive Password</string>
     <string name="retrive_text">To retrive your password enter your email id below and then click on retrive password.</string>
 
-    <string name="old_password">sandi lama</string>
-    <string name="new_password">sandi lama</string>
-    <string name="confirm_password">konfirmasi sandi</string>
-    <string name="submit">kirim</string>
+    <string name="old_password">Sandi lama</string>
+    <string name="new_password">Sandi baru</string>
+    <string name="confirm_password">Konfirmasi sandi</string>
+    <string name="submit">Kirim</string>
 
-    <string name="change_profile_photo">konfirmasi sandi</string>
+    <string name="change_profile_photo">Konfirmasi sandi</string>
     <string-array name="birth_month">
         <item>Birth Month</item>
     </string-array>
     <string-array name="birth_year">
         <item>Birth Year</item>
     </string-array>
-    <string name="height">tinggi badan</string>
-    <string name="weight">berat badan</string>
-    <string name="save_changes">simpan perubahan</string>
-    <string name="delete">hapus</string>
+    <string name="height">Tinggi badan</string>
+    <string name="weight">Berat badan</string>
+    <string name="save_changes">Simpan perubahan</string>
+    <string name="delete">Hapus</string>
 
     <string name="add_child">Add Child</string>
 
@@ -76,11 +76,11 @@
     <string name="category2">Category 2</string>
     <string name="questions">Questions</string>
 
-    <string name="activity_completed">aktivitas selesai</string>
-    <string name="points_earned">aktivitas selesai</string>
+    <string name="activity_completed">Aktivitas selesai</string>
+    <string name="points_earned">Nilai terkumpul</string>
     <string name="todays_target_activity">Target aktivitas hari ini</string>
     <string name="environment">Environmental</string>
-    <string name="points">nilai</string>
+    <string name="points">Nilai</string>
     <string name="activity_name">Activity Name</string>
     <string name="description">Description</string>
     <string name="see_learning">Lihat apa yang dipelajari anak dari aktivitas ini</string>

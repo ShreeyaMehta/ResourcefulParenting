@@ -58,6 +58,8 @@
                         android:layout_marginEnd="35dp"
                         android:text="@string/change_profile_photo"
                         android:textAllCaps="false"
+                        android:fontFamily="@font/brandon_grotesque_medium"
+
                         app:cornerRadius="50dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -85,6 +87,7 @@
                             android:background="@drawable/rounded_rectangle_stroke_bg"
                             android:hint="@string/child_name"
                             android:padding="5dp"
+                            android:fontFamily="@font/brandongrotesque_regular"
 
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -114,6 +117,8 @@
                             android:clickable="false"
                             android:cursorVisible="false"
                             android:focusable="false"
+                            android:fontFamily="@font/brandongrotesque_regular"
+
                             android:padding="5dp"
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -143,6 +148,8 @@
                             android:cursorVisible="false"
                             android:focusable="false"
                             android:padding="5dp"
+                            android:fontFamily="@font/brandongrotesque_regular"
+
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -172,6 +179,8 @@
                             android:clickable="false"
                             android:focusable="false"
                             android:padding="5dp"
+                            android:fontFamily="@font/brandongrotesque_regular"
+
                             android:cursorVisible="false"
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -204,6 +213,8 @@
                             android:hint="@string/height"
                             android:inputType="number"
                             android:maxLength="320"
+                            android:fontFamily="@font/brandongrotesque_regular"
+
                             android:padding="5dp"
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -232,6 +243,8 @@
                             android:inputType="number"
                             android:maxLength="320"
                             android:padding="5dp"
+                            android:fontFamily="@font/brandongrotesque_regular"
+
                             android:textSize="16sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -246,30 +259,34 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_save_changes_profile"
-                android:layout_width="140dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/blue_bg"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="@string/save_changes"
+                android:fontFamily="@font/brandongrotesque_regular"
+
                 android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_holder" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_delete_profile"
-                android:layout_width="130dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/red_bg"
                 android:padding="10dp"
                 android:text="@string/delete"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
+                android:fontFamily="@font/brandongrotesque_regular"
+
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_holder" />
