@@ -4,8 +4,8 @@ import com.resourcefulparenting.models.Query;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class AddChildCheck {
     public String login_token;
@@ -14,5 +14,5 @@ public class AddChildCheck {
     public String child_birth_year;
     public String child_name;
     public String child_gender;
-    public JSONArray queries;
+    public ArrayList<HashMap<String, String>> queries;
 }

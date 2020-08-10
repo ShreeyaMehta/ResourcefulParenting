@@ -58,11 +58,6 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
     ImageView milestone_img;
 
     private String name,activity_id,child_id;
-    private final static int ID_HOME = 1;
-    private final static int ID_EXPLORE = 2;
-    private final static int ID_ACTIVITY = 3;
-    private final static int ID_ACCOUNT = 4;
-    private static final int REQUEST_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,59 +66,9 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
         H.L("Token"+ Prefs.getLoginToken(this));
         H.L("Child"+ Prefs.getChildDetails(this));
 
-      //  bottomNavigation = findViewById(R.id.bottomNavigation);
         bottomNavigation = findViewById(R.id.navigation);
         milestone_img = findViewById(R.id.milestone_img);
 
-       /* bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.explorer_selection));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACTIVITY, R.drawable.activity_selection));
-        bottomNavigation.add(new MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.account_selection));
-        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-            @Override
-            public void onClickItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this, "clicked item : " + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-            @Override
-            public void onShowItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this, "showing item : " + item.getId(), Toast.LENGTH_SHORT).show();
-
-                String name;
-                switch (item.getId()) {
-                    case ID_HOME:
-                        name = "HOME";
-                        loadFragment(new HomeFragment());
-                        break;
-                    case ID_EXPLORE:
-                        loadFragment(new ExplorerFragment());
-                        name = "EXPLORE";
-                        break;
-
-                    case ID_ACTIVITY:
-                        loadFragment(new ActivityListingFragment());
-                        name = "NOTIFICATION";
-                        break;
-                    case ID_ACCOUNT:
-                        loadFragment(new MyAccountGeneralFragment());
-                        name = "ACCOUNT";
-                        break;
-                    default:
-                        name = "";
-                }
-                bottomNavigation.setTransitionName(name);
-              //  tvSelected.setText(getString(R.string.main_page_selected, name));
-            }
-        });
-
-        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-            @Override
-            public void onReselectItem(MeowBottomNavigation.Model item) {
-                Toast.makeText(MainActivity.this, "reselected item : " + item.getId(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
         milestone_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,8 +77,6 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
 
             }
         });
-
-
 
         bottomNavigation.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
@@ -157,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
             return false;
         });
         bottomNavigation.setSelectedItemId(R.id.navigation_home);
-
 
         checkNetWorkDevice();
     }

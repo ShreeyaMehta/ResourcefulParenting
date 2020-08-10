@@ -489,7 +489,7 @@ public class HomeFragment extends Fragment {
                                  pieChart.setExtraOffsets(40, 0, 40, 0);
 
                                  Legend legend = pieChart.getLegend();
-                                 legend.setEnabled(false);
+                                 legend.setEnabled(true);
 
                              }
 

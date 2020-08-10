@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -298,7 +299,6 @@ public class AddChildQuestions extends AppCompatActivity  {
         }
     }
 
-
   /*  private void AddChild(JSONArray jArry) {
         loading.setVisibility(View.VISIBLE);
         addChildCheck.child_name=name;
@@ -328,7 +328,20 @@ public class AddChildQuestions extends AppCompatActivity  {
     }*/
 
     private void AddChild() {
-        JSONArray jArry = new JSONArray();
+        ArrayList<ArrayList<HashMap<String, String>>> hashMapArrayList1 = new ArrayList<>();
+        ArrayList<HashMap<String, String>> hashMapArrayList2 = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            try {
+                HashMap<String, String> hs = new HashMap<>();
+
+                hs.put(result.get(i).id, "" + result.get(i).points);
+                hashMapArrayList2.add(hs);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        hashMapArrayList1.add(hashMapArrayList2);
+      /*  JSONArray jArry = new JSONArray();
         for (int i = 0; i < result.size(); i++) {
             try {
                 jObjd = new JSONObject();
@@ -338,8 +351,7 @@ public class AddChildQuestions extends AppCompatActivity  {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-
+        }*/
 
         loading.setVisibility(View.VISIBLE);
         addChildCheck.login_token = Prefs.getLoginToken(context);
@@ -348,8 +360,8 @@ public class AddChildQuestions extends AppCompatActivity  {
         addChildCheck.child_birth_date=date_;
         addChildCheck.child_birth_month=month_;
         addChildCheck.child_birth_year=year_;
-        addChildCheck.queries=jArry;
-        H.L("Array:"+jArry);
+        addChildCheck.queries=hashMapArrayList2;
+        H.L("Array:"+hashMapArrayList2);
         Call<AddChildResponse> call = ApiClient.getRetrofit().create(Api.class).AddChild(addChildCheck);
         call.enqueue(new Callback<AddChildResponse>() {
             @Override
