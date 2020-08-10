@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:textSize="16sp"
     android:gravity="center"
+    android:fontFamily="@font/brandongrotesque_regular"
     android:background="@color/milestone_bg"
     android:textColor="@color/white"
     android:padding="5dip"/>

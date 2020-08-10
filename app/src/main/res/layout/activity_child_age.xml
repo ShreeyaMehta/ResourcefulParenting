@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sigin_bg"
-    tools:context=".ChildAgeActivity">
+  >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_how_old_is_child"
@@ -15,6 +19,7 @@
         android:layout_marginTop="210dp"
         android:gravity="center"
         android:text="@string/how_old_is_child"
+        android:fontFamily="@font/brandon_grotesque_medium"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -28,6 +33,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="@string/bday_details"
+        android:fontFamily="@font/brandongrotesque_regular"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -89,6 +95,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
+        android:fontFamily="@font/brandongrotesque_regular"
         android:background="@drawable/orange_bg"
         android:padding="10dp"
         android:text="@string/next"
@@ -98,4 +105,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_date" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/tv_bday_details"
+            app:layout_constraintBottom_toTopOf="@id/btn_next">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.8">
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="true" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

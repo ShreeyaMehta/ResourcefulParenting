@@ -1,4 +1,2 @@
-include ':MeowBottomNavigation'
-include ':MeowBottomNavigation-master'
 rootProject.name='Resourceful Parenting'
 include ':app'
