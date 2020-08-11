@@ -84,7 +84,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Parenting")
+                        .setContentTitle(getResources().getString(R.string.app_name))
                         .setContentText(body)
                         .setAutoCancel(true)
                         .setSound(notificationSound)

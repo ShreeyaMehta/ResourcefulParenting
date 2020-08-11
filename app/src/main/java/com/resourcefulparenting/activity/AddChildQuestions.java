@@ -61,7 +61,7 @@ public class AddChildQuestions extends AppCompatActivity  {
       //  Prefs.setCurrentActivity(context, Prefs.CurrentActivity.ADDCHILDNAME);
         loading = findViewById(R.id.loading);
 
-  /*      SharedPreferences settings=getSharedPreferences("prefs",0);
+  /*     SharedPreferences settings=getSharedPreferences("prefs",0);
         login_token = settings.getString("login_token", login_token);*/
 
         name = getIntent().getStringExtra("name");
@@ -174,13 +174,13 @@ public class AddChildQuestions extends AppCompatActivity  {
                     }
                     else
                     {
-                        H.T(context,"Select answer");
+                        H.T(context,"Pilih Poin");
                     }
 
 
                 } else {
 
-                    next.setText("Submit");
+                    next.setText(getResources().getString(R.string.submit));
                 //    if (click) {
                     checkNetWorkAddChild();
                 }
@@ -198,7 +198,7 @@ public class AddChildQuestions extends AppCompatActivity  {
                    }
                    else
                    {
-                       next.setText("Next");
+                       next.setText(getResources().getString(R.string.next));
                        current_question--;
                        setQuestion(current_question);
                    }

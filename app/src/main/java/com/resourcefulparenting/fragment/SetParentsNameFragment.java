@@ -68,7 +68,7 @@ public class SetParentsNameFragment extends Fragment {
             setParentNameCheck.parent_name = parents_Name;
 
             if(parents_Name.isEmpty()){
-                setParentsNameBinding.edtSetParentName.setError("Required");
+                setParentsNameBinding.edtSetParentName.setError("Nama orang tua wajib diisi");
             }else{
                 setParentsNameBinding.edtSetParentName.setError(null);
 
