@@ -49,7 +49,6 @@ public class SignInActivity extends AppCompatActivity {
     private String email, password;
     final LoginCheck loginCheck = new LoginCheck();
     private RelativeLayout loading;
-    final Userdetails userdetails = new Userdetails();
     private String uniqueID = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +98,11 @@ public class SignInActivity extends AppCompatActivity {
             loginCheck.login_type = "1";
 
             if(email.isEmpty()){
-                edt_email.setError("E-mail Required");
+                edt_email.setError("Alamat email wajib diisi");
             } else if (!isValidEmail(email)) {
-                edt_email.setError("Invalid E-mail");
+                edt_email.setError("Masukkan email yang valid");
             } else if (password.isEmpty()) {
-                edt_password.setError("Password Required");
+                edt_password.setError("Kata sandi minimum 6 karakter");
             } else {
                 loading.setVisibility(View.VISIBLE);
                 checkNetWork();

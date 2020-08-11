@@ -1,5 +1,6 @@
 package com.resourcefulparenting.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -368,10 +369,10 @@ public class HomeFragment extends Fragment {
 
                               if (todayAcyivityResponse.activitiesDetails.iscompleted)
                               {
-                                  binding.btnRegister.setText("Do it again");
+                                  binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
                               }
                               else {
-                                  binding.btnRegister.setText("We Did it");
+                                  binding.btnRegister.setText(getResources().getString(R.string.we_did_it));
                               }
                               activity_id=todayAcyivityResponse.activitiesDetails.activity_id;
                               images.addAll(todayAcyivityResponse.activities_imgs);
@@ -550,7 +551,7 @@ public class HomeFragment extends Fragment {
                      {
                          if(response1.error.equals("false")){
                              H.T(context,response1.message);
-                             binding.btnRegister.setText("Do it again");
+                             binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
                          }else {
                              H.T(context,response1.message);
                          }
@@ -638,9 +639,9 @@ public class HomeFragment extends Fragment {
 
     private void showCaptureDialog() {
         try {
-            final CharSequence[] items = {"From Gallery", "From Camera"};
+            final CharSequence[] items = {getResources().getString(R.string.gallery), getResources().getString(R.string.camera)};
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Take Photo");
+            builder.setTitle(getResources().getString(R.string.take_photo));
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int item) {
                     switch (item) {
@@ -822,7 +823,7 @@ public class HomeFragment extends Fragment {
 
                 if (video_url.isEmpty())
                 {
-                    H.T(context,"Youtube Video url Required");
+                    H.T(context,"Masukkan alamat url Youtube");
                 }
                 else if (!isYoutubeUrl(video_url))
                 {
@@ -960,6 +961,7 @@ public class HomeFragment extends Fragment {
         }
 
         // When all async task done
+        @SuppressLint("WrongThread")
         protected void onPostExecute(List<Bitmap> result){
             // Hide the progress dialog
             mProgressDialog.dismiss();

@@ -45,7 +45,7 @@ public class AdapterListing extends RecyclerView.Adapter<AdapterListing.VH> {
 
 
         holder.tv_activity_name.setText(items.activity_name);
-        holder.points_img_.setText("Points Earned"+" "+items.activity_point);
+        holder.points_img_.setText(" Poin telah diperoleh"+" "+items.activity_point);
         holder.tv_category_name.setText(items.category_name);
         if (!items.activity_image.equals("") && !items.activity_image.equals("null")) {
             Glide.with(context)

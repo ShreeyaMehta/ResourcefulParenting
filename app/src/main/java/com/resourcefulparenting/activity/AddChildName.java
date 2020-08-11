@@ -50,7 +50,7 @@ public class AddChildName extends AppCompatActivity {
             child_name = edt_child_name.getEditText().getText().toString();
 
             if(child_name.isEmpty()){
-                edt_child_name.setError("Required");
+                edt_child_name.setError("Masukkan nama anak");
             }else {
                 edt_child_name.setError(null);
                 Intent next = new Intent(context, AddChildAge.class);

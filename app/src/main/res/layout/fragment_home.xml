@@ -18,9 +18,9 @@
 
            <ImageView
                android:id="@+id/add_child"
-               android:layout_width="100dp"
+               android:layout_width="120dp"
                android:layout_height="wrap_content"
-               android:src="@drawable/add_child"
+               android:src="@drawable/add_child_indo"
                android:layout_marginTop="10dp"
                android:layout_marginEnd="30dp"
                android:layout_marginRight="30dp"
@@ -30,7 +30,7 @@
 
            <androidx.cardview.widget.CardView
                android:id="@+id/child_name"
-               android:layout_width="100dp"
+               android:layout_width="150dp"
                android:layout_height="30dp"
                android:layout_marginTop="10dp"
                android:layout_marginStart="30dp"
@@ -196,7 +196,6 @@
                    android:fontFamily="@font/brandongrotesque_regular"
                    android:textColor="@color/white"
                    android:textSize="20sp"
-                   app:layout_constraintEnd_toStartOf="@id/num_of_points"
                    app:layout_constraintStart_toEndOf="@id/target_icon"
                    app:layout_constraintTop_toTopOf="parent" />
 
@@ -205,29 +204,27 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:gravity="center"
-                       android:text="10"
+                       android:text="100"
                        android:layout_marginTop="10dp"
                        android:fontFamily="@font/brandongrotesque_regular"
-                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="10dp"
                        android:textSize="20sp"
                        android:textStyle="bold"
                        android:textColor="@color/white"
                        app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintEnd_toStartOf="@id/minus"
-                       app:layout_constraintStart_toEndOf="@id/tv_target_activity"/>
+                       app:layout_constraintEnd_toStartOf="@id/minus"/>
 
                    <TextView
                        android:id="@+id/tv_points"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/points"
-                       android:layout_marginStart="10dp"
+                       android:layout_marginEnd="12dp"
                        android:textSize="12sp"
                        android:fontFamily="@font/brandongrotesque_regular"
                        android:textColor="@color/white"
                        app:layout_constraintEnd_toStartOf="@id/minus"
-                       app:layout_constraintTop_toBottomOf="@id/num_of_points"
-                       app:layout_constraintStart_toEndOf="@id/tv_target_activity"/>
+                       app:layout_constraintTop_toBottomOf="@id/num_of_points"/>
 
                    <ImageView
                        android:id="@+id/minus"
@@ -420,7 +417,7 @@
                    android:text="@string/milestone_reminder"
                    android:textAllCaps="false"
                    android:textColor="@color/white"
-                   android:textSize="14sp"
+                   android:textSize="15sp"
                    android:fontFamily="@font/brandongrotesque_regular"
                    app:layout_constraintStart_toEndOf="@id/reminder_img"
                    app:layout_constraintTop_toTopOf="parent"

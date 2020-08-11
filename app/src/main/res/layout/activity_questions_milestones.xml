@@ -38,7 +38,7 @@
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/llMenu"
             android:fontFamily="@font/brandon_grotesque_medium"
-            android:text="Back"
+            android:text="Kembali"
             android:textColor="@color/white"
             android:textSize="18sp"
             tools:ignore="RelativeOverlap" />

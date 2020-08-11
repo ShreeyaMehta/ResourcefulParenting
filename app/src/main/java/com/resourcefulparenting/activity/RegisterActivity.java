@@ -123,14 +123,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerCheck.loginType = "1";
 
         if(parent_name.isEmpty()){
-            edt_parent_name.setError("Parent Name Required");
+            edt_parent_name.setError("Nama orang tua wajib diisi");
         }else if(email_id.isEmpty()){
-            edt_email_id.setError("E-mail Required");
+            edt_email_id.setError("Alamat email wajib diisi");
         }else if (!isValidEmail(email_id)) {
-            edt_email_id.setError("Invalid E-mail");
+            edt_email_id.setError("Masukkan email yang valid");
         }
         else if (password.isEmpty()) {
-            edt_password.setError("Password Required");
+            edt_password.setError("Kata sandi minimum 6 karakter");
         } else {
             checkNetWork();
         }

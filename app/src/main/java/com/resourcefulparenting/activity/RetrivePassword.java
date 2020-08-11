@@ -46,10 +46,10 @@ public class RetrivePassword extends AppCompatActivity {
             emailid = edt_email_id.getEditText().getText().toString();
             forgotPasswordCheck.email = emailid;
             if(emailid.isEmpty()){
-                edt_email_id.setError("Email Recovered");
+                edt_email_id.setError("Alamat email wajib diisi");
             }
             else if (!isValidEmail(emailid)) {
-                edt_email_id.setError("Invalid E-mail");
+                edt_email_id.setError("Masukkan email yang valid");
             }else{
 
                 getForgotPassword();

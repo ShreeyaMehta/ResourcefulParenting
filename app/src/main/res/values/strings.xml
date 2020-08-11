@@ -1,19 +1,19 @@
 <resources>
     <string name="app_name">RPI</string>
     <string name="default_notification_channel_id">Notification</string>
-    <string name="register">Register</string>
+    <string name="register">Daftar</string>
     <string name="parent_name">Tim</string>
-    <string name="parent_no">Mobile No.</string>
+    <string name="parent_no">Nomor ponsel</string>
     <string name="email">alamat email</string>
-    <string name="password">Password</string>
-    <string name="signin">Sign in</string>
+    <string name="password">Kata sandi</string>
+    <string name="signin">Masuk</string>
     <string name="forgot_password">Lupa sandi?</string>
     <string name="fb">Masuk dengan Facebook.</string>
-    <string name="register_fb">Register With Facebook</string>
+    <string name="register_fb">Daftar dengan Facebook</string>
     <string name="login">Masuk</string>
-    <string name="or">OR</string>
-    <string name="new_member">New Member?</string>
-    <string name="no_internet_connection">Please check internet connection</string>
+    <string name="or">atau</string>
+    <string name="new_member"> Anggota baru?</string>
+    <string name="no_internet_connection">Ada kesalahan internet atau koneksi. Silahkan coba lagi.</string>
     <string name="how_old_is_child">Berapa umur anak Anda?</string>
     <string name="bday_details">tanggal lahir anak</string>
     <string-array name="date">
@@ -36,7 +36,7 @@
     <string name="explorer">eksplor</string>
     <string name="activity">aktifitas</string>
     <string name="account">akun saya</string>
-    <string name="milestone">Milestone</string>
+    <string name="milestone">MileStones</string>
 
     <string name="general">Umum</string>
     <string name="set_parent_name">Nama orang tua</string>
@@ -45,13 +45,12 @@
     <string name="privacy_policy">Kebijakan privasi</string>
     <string name="terms">Syarat dan ketentuan</string>
     <string name="children">Anak</string>
-    <string name="child1">Child1</string>
-    <string name="child2">Child2</string>
     <string name="logout">keluar</string>
 
-    <string name="recover_password">Recover Password</string>
+    <string name="recover_password">Pemulihan "lupa kata sandi"</string>
     <string name="retrive_password">Retrive Password</string>
-    <string name="retrive_text">To retrive your password enter your email id below and then click on retrive password.</string>
+    <string name="retrive_text">Untuk mendapatkan kembali kata sandi Anda, masukkan alamat email Anda di bawah ini kemudian klik untuk mengambil mendapatkan kata sandi
+</string>
 
     <string name="old_password">Sandi lama</string>
     <string name="new_password">Sandi baru</string>
@@ -70,10 +69,8 @@
     <string name="save_changes">Simpan perubahan</string>
     <string name="delete">Hapus</string>
 
-    <string name="add_child">Add Child</string>
+    <string name="add_child">Tambah Anak</string>
 
-    <string name="category1">Category 1</string>
-    <string name="category2">Category 2</string>
     <string name="questions">Questions</string>
 
     <string name="activity_completed">Aktivitas selesai</string>
@@ -85,15 +82,19 @@
     <string name="description">Description</string>
     <string name="see_learning">Lihat apa yang dipelajari anak dari aktivitas ini</string>
     <string name="learning">Learning</string>
-    <string name="we_did_it">We Did it</string>
+    <string name="we_did_it">Kita berhasil!</string>
     <string name="milestone_reminder">Mile Stone Reminder</string>
+    <string name="do_it_again">Selesai</string>
+    <string name="camera"> Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="take_photo">Ambil foto</string>
 
     <string name="title">Title</string>
     <string name="short_description">Short Description</string>
 
     <string name="category_name">Category Name</string>
 
-    <string name="Know_about_ur_child">Know About Your Child</string>
+    <string name="Know_about_ur_child">Ketahui tentang anak Anda</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

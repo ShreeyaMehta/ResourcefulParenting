@@ -159,9 +159,9 @@ public class ChangeProfileFragment extends Fragment {
     }
     private void showCaptureDialog() {
         try {
-            final CharSequence[] items = {"From Gallery", "From Camera"};
+            final CharSequence[] items = {getResources().getString(R.string.gallery), getResources().getString(R.string.camera)};
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Take Photo");
+            builder.setTitle(getResources().getString(R.string.take_photo));
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int item) {
                     switch (item) {
@@ -227,7 +227,7 @@ public class ChangeProfileFragment extends Fragment {
 
 
         if(name.isEmpty()){
-            binding.edtChildNameProfile.setError("Parent Name Required");
+            binding.edtChildNameProfile.setError("Masukkan nama anak");
         } else {
 
             checkNetWork();
