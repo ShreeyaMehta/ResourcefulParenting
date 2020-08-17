@@ -49,6 +49,7 @@ public class ActivityListingFragment extends Fragment {
     private List<ChildDetails> childDetails1 = new ArrayList<>();
       AdapterListing adapterListing;
     private Spinner child;
+    int n=1;
     private Context context;
     String child_id="";
     final ActivityComplistCheck activitySendCheck = new ActivityComplistCheck();
@@ -104,27 +105,68 @@ public class ActivityListingFragment extends Fragment {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, R.layout.spinner_text, childs);
         // attaching data adapter to spinner
         child.setAdapter(dataAdapter);
-        child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String text = parent.getItemAtPosition(pos).toString();
-                H.L("pos"+childDetails1.size());
+        if (childs.size() == 1)
+        {
+            child.setEnabled(false);
+            for (int j = 0; j < childDetails1.size(); j++) {
+                child_id = childDetails1.get(j).getId();
+                Prefs.setChildID(context, child_id);
+                checkNetWorkComplit();
+                H.L("idddd" + child_id);
+                break;
+            }
 
-                for (int j = 0; j < childDetails1.size(); j++) {
-                    if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
-                    {
-                        child_id = childDetails1.get(j).getId();
-                        Prefs.setChildID(context,child_id);
-                        checkNetWorkComplit();
-                        break;
+        }
+        else
+        {
+            n=1;
+            child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    String text = parent.getItemAtPosition(pos).toString();
+                    JSONArray    jsonArray1 = new JSONArray();
+                    for (int j = 0; j < childDetails1.size(); j++) {
+                        JSONObject object = new JSONObject();
+                        if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
+                        {
+                            child_id = childDetails1.get(j).getId();
+                            H.L("idd"+childDetails1.get(j).getId());
+                            Prefs.setChildID(context, child_id);
+                            checkNetWorkComplit();
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(0,object);
+                                // Prefs.setChildDetails(context, jsonArray1.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            // break;
+                        }
+                        else {
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(n,object);
+                                n++;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
 
                     }
+                    Prefs.setChildDetails(context, jsonArray1.toString());
+                    n=1;
+
                 }
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         binding.rvList.setLayoutManager(mLayoutManager);

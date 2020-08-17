@@ -13,6 +13,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.LoggingBehavior;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.resourcefulparenting.R;
@@ -26,6 +38,8 @@ import com.resourcefulparenting.util.H;
 import com.resourcefulparenting.util.Prefs;
 import com.resourcefulparenting.util.Progress;
 
+import org.json.JSONObject;
+
 import java.util.UUID;
 
 import retrofit2.Call;
@@ -34,7 +48,8 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private RelativeLayout loading;
-
+    private LoginButton login_button;
+    CallbackManager callbackManager;
     private Context context;
     private Button register;
     private TextInputLayout edt_parent_name, edt_mobile_no, edt_email_id, edt_password;
@@ -49,19 +64,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_register);
         context = RegisterActivity.this;
-       // Prefs.setCurrentActivity(context, Prefs.CurrentActivity.SIGNINACTIVITY);
+        // Prefs.setCurrentActivity(context, Prefs.CurrentActivity.SIGNINACTIVITY);
         bindview();
         Uniqueid();
 
-        //if running for first time*/
 
-      /*  if(isloggedin){
-            Intent a = new Intent(context, MainActivity.class);
-            a.putExtra("login_token", login_token);
-            startActivity(a);
-        }*/
 
     }
 
@@ -77,7 +87,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void bindview() {
         mainLayout = findViewById(R.id.mainLayout);
         progress = new Progress(this, context, mainLayout);
-
+        login_button = findViewById(R.id.login_button);
+        login_button.setReadPermissions("email");
+        LoginManager.getInstance().logOut();
         loading = findViewById(R.id.loading);
         register = findViewById(R.id.btn_register);
         edt_parent_name = findViewById(R.id.edt_parent_name);
@@ -85,6 +97,81 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edt_email_id = findViewById(R.id.edt_register_email);
         edt_password = findViewById(R.id.edt_register_password);
         register.setOnClickListener(this);
+
+        login_button.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+
+                //   etpassword.setVisibility(View.GONE);
+                //  etrepassword.setVisibility(View.GONE);
+
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+
+                    @Override
+                    public void onCompleted(JSONObject object,
+                                            GraphResponse response) {
+
+
+
+                        try {
+                            FacebookSdk.setIsDebugEnabled(true);
+                            FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+                            System.out.println("AccessToken.getCurrentAccessToken()" + AccessToken
+                                    .getCurrentAccessToken().toString());
+                        } catch (Exception e) {
+                            //e.printStackTrace();StackTrace();
+                        }
+                        Log.e("Json data", object.toString());
+                        try {
+
+                            String firstname = object.getString("first_name").trim();
+                            String lastname = object.getString("last_name").trim();
+                            String email_id=object.getString("email").trim();
+                            parent_name = firstname + " "+ lastname;
+
+
+                            registerCheck.parentName = parent_name;
+                            registerCheck.mobileNo = "";
+                            registerCheck.email = email_id;
+                            registerCheck.password = "";
+                            registerCheck.deviceType = "Android";
+                            registerCheck.deviceUniqueId =uniqueID;
+                            registerCheck.loginType = "2";
+                            LoginManager.getInstance().logOut();
+                            checkNetWork();
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            H.T(context,"Izinkan kami untuk menerima alamat email Anda dalam upaya Anda berikutnya");
+                        }
+
+
+                    }
+                });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "first_name, last_name, email"); // Parámetros que pedimos a facebook
+                request.setParameters(parameters);
+                request.executeAsync();
+
+            }
+
+
+            @Override
+            public void onCancel() {
+                H.T(context, "Login Cancel");
+                H.L("hhhhhqqq");
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+                H.L("hhhhh");
+
+            }
+        });
+
 
     }
 
@@ -123,14 +210,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerCheck.loginType = "1";
 
         if(parent_name.isEmpty()){
-            edt_parent_name.setError("Nama orang tua wajib diisi");
+            edt_parent_name.setError("Parent Name Required");
         }else if(email_id.isEmpty()){
-            edt_email_id.setError("Alamat email wajib diisi");
+            edt_email_id.setError("E-mail Required");
         }else if (!isValidEmail(email_id)) {
-            edt_email_id.setError("Masukkan email yang valid");
+            edt_email_id.setError("Invalid E-mail");
         }
         else if (password.isEmpty()) {
-            edt_password.setError("Kata sandi minimum 6 karakter");
+            edt_password.setError("Password Required");
         } else {
             checkNetWork();
         }
@@ -158,16 +245,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void registercall() {
         try {
             loading.setVisibility(View.VISIBLE);
+
             Call<RegisterResponse> call = ApiClient.getRetrofit().create(Api.class).registerParent(registerCheck);
             call.enqueue(new Callback<RegisterResponse>() {
                 @Override
                 public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                  //  Log.d("response", String.valueOf(response.body()));
+                    //  Log.d("response", String.valueOf(response.body()));
                     H.L("response=" + new Gson().toJson(response.body()));
                     loading.setVisibility(View.GONE);
 
                     RegisterResponse register = response.body();
-                   if (register != null) {
+                    if (register != null) {
                         if (register.error.equals("false"))
                         {
                             H.T(context,register.message);
@@ -218,5 +306,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 }

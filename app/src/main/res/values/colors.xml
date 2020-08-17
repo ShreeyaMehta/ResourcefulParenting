@@ -45,14 +45,14 @@
     <color name="spatial">#BE1E2D</color>
     <color name="spatial_dark">#7b141e</color>
 
-    <color name="music">#344595</color>
+    <color name="music">#02a2aa</color>
     <color name="music_dark">#013336</color>
 
-    <color name="environment">#96E43A</color>
+    <color name="environment">#00CE86</color>
     <color name="environment_dark">#005839</color>
 
     <color name="circle_points_earned">#14d8bf</color>
     <color name="activty_list_bg">#f5fdff</color>
     <color name="border_listing">#d5d5d5</color>
-
+    <color name="transparent">#00FFFFFF</color>
 </resources>

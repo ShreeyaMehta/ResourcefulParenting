@@ -35,6 +35,7 @@ public class ExplorerFragment extends Fragment {
     private FragmentExplorerBinding binding;
     private Context context;
     private Spinner child;
+    int n=1;
     private String name,activity_id, login_token;
     private List<ChildDetails> childDetails1 = new ArrayList<>();
     ArrayList<String> childs = new ArrayList<>();
@@ -152,26 +153,69 @@ public class ExplorerFragment extends Fragment {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, R.layout.spinner_text, childs);
         // attaching data adapter to spinner
         child.setAdapter(dataAdapter);
-        child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String text = parent.getItemAtPosition(pos).toString();
+        if (childs.size() == 1)
+        {
+            child.setEnabled(false);
+            for (int j = 0; j < childDetails1.size(); j++)
+            {
+                child_id = childDetails1.get(j).getId();
+                H.L("call"+childDetails1.get(j).getId());
+                Prefs.setChildID(context, child_id);
+                break;
+            }
 
-                for (int j = 0; j < childDetails1.size(); j++) {
-                    if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
-                    {
-                        child_id = childDetails1.get(j).getId();
-                        Prefs.setChildID(context,child_id);
-                        H.L("idddd"+child_id);
-                        break;
+        }
+        else
+        {
+            n=1;
+            child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    String text = parent.getItemAtPosition(pos).toString();
+                    JSONArray    jsonArray1 = new JSONArray();
+                    for (int j = 0; j < childDetails1.size(); j++) {
+                        JSONObject object = new JSONObject();
+                        if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
+                        {
+                            child_id = childDetails1.get(j).getId();
+                            H.L("idd"+childDetails1.get(j).getId());
+                            Prefs.setChildID(context, child_id);
+
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(0,object);
+                                // Prefs.setChildDetails(context, jsonArray1.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            // break;
+                        }
+                        else {
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(n,object);
+                                n++;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
 
                     }
+                    Prefs.setChildDetails(context, jsonArray1.toString());
+                    n=1;
+
                 }
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }
+
 
     }
 
