@@ -36,7 +36,7 @@
     <string name="explorer">eksplor</string>
     <string name="activity">aktifitas</string>
     <string name="account">akun saya</string>
-    <string name="milestone">MileStones</string>
+    <string name="milestone">Milestone</string>
 
     <string name="general">Umum</string>
     <string name="set_parent_name">Nama orang tua</string>
@@ -95,7 +95,8 @@
     <string name="category_name">Category Name</string>
 
     <string name="Know_about_ur_child">Ketahui tentang anak Anda</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="facebook_app_id">236263297500977</string>
+    <string name="fb_login_protocol_scheme">fb236263297500977</string>
 
 
 </resources>

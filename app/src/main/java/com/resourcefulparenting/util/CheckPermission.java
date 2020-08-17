@@ -84,5 +84,4 @@ public class CheckPermission {
     private void requestPermissionForReadSms() {
         ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.READ_SMS}, READ_SMS_PERMISSION_REQUEST_CODE);
     }
-
 }

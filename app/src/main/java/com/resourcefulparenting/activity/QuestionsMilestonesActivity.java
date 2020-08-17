@@ -62,12 +62,12 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
         llMenu = findViewById(R.id.llMenu);
         btn_register = findViewById(R.id.btn_register);
 
-        btn_register.setOnClickListener(new View.OnClickListener() {
+       /* btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 H.T(context,"dkjbschj");
             }
-        });
+        });*/
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         rv_list.setLayoutManager(mLayoutManager);
 
@@ -142,7 +142,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 
         }
 
-
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_row_question_mile, parent, false);
@@ -152,15 +151,64 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             final MilestoneQuestionsResponse.QuestionDetails items=list.get(position);
-
-
             holder.tv_activity_name.setText(items.question);
             // holder.points_img_.setText("Points Earned"+" "+items.activity_point);
 
             if (items.checked) {
-                holder.activity_img_.setImageResource(R.drawable.correct_tick_green);
+                holder.ivTick.setVisibility(View.VISIBLE);
+                if (items.id.equalsIgnoreCase("1"))
+                {
+                    holder.activity_img_.setImageResource(R.drawable.circlelanguage);
+                }
+                else  if (items.id.equalsIgnoreCase("2")){
+                    holder.activity_img_.setImageResource(R.drawable.circlelogic);
+                }
+                else  if (items.id.equalsIgnoreCase("3")){
+                    holder.activity_img_.setImageResource(R.drawable.circlephysical);
+                }
+                else  if (items.id.equalsIgnoreCase("4")){
+                    holder.activity_img_.setImageResource(R.drawable.circleinterapersonal);
+                }
+                else  if (items.id.equalsIgnoreCase("5")){
+                    holder.activity_img_.setImageResource(R.drawable.circleinterpersonal);
+                }
+                else  if (items.id.equalsIgnoreCase("6")){
+                    holder.activity_img_.setImageResource(R.drawable.circlespatial);
+                }
+                else  if (items.id.equalsIgnoreCase("7")){
+                    holder.activity_img_.setImageResource(R.drawable.circlemusic);
+                }
+                else  if (items.id.equalsIgnoreCase("8")){
+                    holder.activity_img_.setImageResource(R.drawable.circleenvironment);
+                }
+
             } else {
-                holder.activity_img_.setImageResource(R.drawable.ccirclegreen);
+                holder.ivTick.setVisibility(View.GONE);
+                if (items.id.equalsIgnoreCase("1"))
+                {
+                    holder.activity_img_.setImageResource(R.drawable.circlelanguage);
+                }
+                else  if (items.id.equalsIgnoreCase("2")){
+                    holder.activity_img_.setImageResource(R.drawable.circlelogic);
+                }
+                else  if (items.id.equalsIgnoreCase("3")){
+                    holder.activity_img_.setImageResource(R.drawable.circlephysical);
+                }
+                else  if (items.id.equalsIgnoreCase("4")){
+                    holder.activity_img_.setImageResource(R.drawable.circleinterapersonal);
+                }
+                else  if (items.id.equalsIgnoreCase("5")){
+                    holder.activity_img_.setImageResource(R.drawable.circleinterpersonal);
+                }
+                else  if (items.id.equalsIgnoreCase("6")){
+                    holder.activity_img_.setImageResource(R.drawable.circlespatial);
+                }
+                else  if (items.id.equalsIgnoreCase("7")){
+                    holder.activity_img_.setImageResource(R.drawable.circlemusic);
+                }
+                else  if (items.id.equalsIgnoreCase("8")){
+                    holder.activity_img_.setImageResource(R.drawable.circleenvironment);
+                }
             }
 
 
@@ -204,17 +252,18 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 
 
             TextView tv_activity_name;
-            ImageView activity_img_;
+            ImageView activity_img_,ivTick;
 
             ViewHolder(View itemView) {
                 super(itemView);
                 tv_activity_name = itemView.findViewById(R.id.tv_activity_name);
 //            points_img_ = itemView.findViewById(R.id.points_img_);
                 activity_img_ = itemView.findViewById(R.id.activity_img_);
+                ivTick = itemView.findViewById(R.id.ivTick);
 
-/*
+                /*
 
-*/
+                 */
 
             }
         }
@@ -243,47 +292,47 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                //System.out.println("beer " + js);
+                System.out.println("beer " + js);
 
 
 
-                }
+            }
 
 
-         //   loading.setVisibility(View.GONE);
+            //   loading.setVisibility(View.GONE);
+
+
 
             activitySendCheck1.login_token= Prefs.getLoginToken(context);
             activitySendCheck1.child_id=Prefs.getChildID(context);
             activitySendCheck1.questionDetails=js;
-        Call<MilestoneQuestionsSendResponse> call = ApiClient.getRetrofit().create(Api.class).milestoneQuestionsSend(activitySendCheck1);
-        call.enqueue(new Callback<MilestoneQuestionsSendResponse>() {
-            @Override
-            public void onResponse(Call<MilestoneQuestionsSendResponse> call, Response<MilestoneQuestionsSendResponse> response) {
-                H.L("responsennnn=" + new Gson().toJson(response.body()));
-                loading.setVisibility(View.GONE);
-                MilestoneQuestionsSendResponse response1= response.body();
-                if (response1 !=null)
-                {
-                    if(response1.error.equals("false")){
-                        H.T(context,response1.message);
-                        Intent intent = new Intent(QuestionsMilestonesActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
+            Call<MilestoneQuestionsSendResponse> call = ApiClient.getRetrofit().create(Api.class).milestoneQuestionsSend(activitySendCheck1);
+            call.enqueue(new Callback<MilestoneQuestionsSendResponse>() {
+                @Override
+                public void onResponse(Call<MilestoneQuestionsSendResponse> call, Response<MilestoneQuestionsSendResponse> response) {
+                    H.L("responsennnn=" + new Gson().toJson(response.body()));
+                    loading.setVisibility(View.GONE);
+                    MilestoneQuestionsSendResponse response1= response.body();
+                    if (response1 !=null)
+                    {
+                        if(response1.error.equals("false")){
+                            Intent intent = new Intent(QuestionsMilestonesActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
 
+                        }
                     }
+
                 }
 
-            }
-
-            @Override
-            public void onFailure(Call<MilestoneQuestionsSendResponse> call, Throwable t) {
-                loading.setVisibility(View.GONE);
-                //Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<MilestoneQuestionsSendResponse> call, Throwable t) {
+                    loading.setVisibility(View.GONE);
+                    //Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }
-
 }

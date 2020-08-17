@@ -26,10 +26,6 @@ public class ApiClient {
                     .writeTimeout(3000, TimeUnit.SECONDS)
                     .build();
 
-        /*    new OkHttpClient.Builder()
-                    .addNetworkInterceptor(new StethoInterceptor())
-                    .build();*/
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(Base_url)
                     .addConverterFactory(GsonConverterFactory.create(gson))

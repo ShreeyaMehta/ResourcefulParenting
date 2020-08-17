@@ -124,7 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_forgot_password" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/btn_fb"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -138,7 +138,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login"
         android:src="@drawable/fb"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"/>-->
+
+        <com.facebook.login.widget.LoginButton
+            android:layout_height="70dp"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="14dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/login_button"
+            app:layout_constraintTop_toBottomOf="@id/btn_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginStart="52dp"
+            android:padding="10dp"
+            facebook:barrierAllowsGoneWidgets="true"
+            facebook:com_facebook_logout_text="MASUK DENGAN FACEBOOK"
+            facebook:com_facebook_login_text="MASUK DENGAN FACEBOOK"
+            xmlns:facebook="http://schemas.android.com/apk/res-auto"/>
 
     <View
         android:id="@+id/view1"
@@ -146,10 +165,10 @@
         android:layout_height="0.5dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="52dp"
         android:background="@color/lightSemiBlack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_fb" />
+        app:layout_constraintTop_toBottomOf="@id/login_button" />
 
     <TextView
         android:id="@+id/tv_or"
@@ -160,23 +179,23 @@
         android:textSize="16sp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:layout_marginRight="10dp"
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/brandongrotesque_regular"
         app:layout_constraintStart_toEndOf="@id/view1"
-        app:layout_constraintTop_toBottomOf="@id/btn_fb"/>
+        app:layout_constraintTop_toBottomOf="@id/login_button"/>
 
     <View
         android:layout_width="120dp"
         android:layout_height="0.5dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="52dp"
         android:layout_marginStart="10dp"
         android:background="@color/lightSemiBlack"
         app:layout_constraintStart_toEndOf="@id/tv_or"
-        app:layout_constraintTop_toBottomOf="@id/btn_fb"/>
+        app:layout_constraintTop_toBottomOf="@id/login_button"/>
 
     <TextView
         android:id="@+id/tv_new_member"

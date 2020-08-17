@@ -1,6 +1,5 @@
 package com.resourcefulparenting.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -50,6 +49,7 @@ import android.widget.Toast;
 
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -128,11 +128,17 @@ public class HomeFragment extends Fragment {
     PieData pieData;
     PieDataSet pieDataSet;
     Context context;
+    int n=1;
     ArrayList<PieEntry> pieEntries;
+    private int[] MY_COLORS;
     private Spinner child;
     private ConstraintLayout target_Activity, show_activity;
+    private ImageView plus;
     private boolean isvisible = false;
     Float point;
+    Float point1,point2,point3,point4,point5,point6,point7,point8;
+
+    private int lang_color=0,logic_color=0,physical=0,intrapersonal=0,interpersonal=0,spatial=0,music=0,environment=0;
     final int FROM_GALLERY = 100;
     final int FROM_CAMERA = 200;
     String img_base64="";
@@ -143,7 +149,7 @@ public class HomeFragment extends Fragment {
 
     final TodaysactivityCheck todaysactivityCheck = new TodaysactivityCheck();
     final ActivitySendCheck activitySendCheck = new ActivitySendCheck();
-        final AlarmCheck alarmCheck = new AlarmCheck();
+    final AlarmCheck alarmCheck = new AlarmCheck();
     Boolean isalarmset;
     ArrayList<String> childs = new ArrayList<>();
     String child_id="";
@@ -158,7 +164,9 @@ public class HomeFragment extends Fragment {
     String iconsStoragePath = Environment.getExternalStorageDirectory() + "/Parenting/";
     URL url1;
     URL url2;
-     URL url;
+    URL url;
+    String firstid = "",secodid="",thirdid="";
+    ArrayList<Integer> colors;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -178,7 +186,7 @@ public class HomeFragment extends Fragment {
         target_Activity = binding.showHideActivityDetails;
         show_activity = binding.homeActivity;
         context = container.getContext();
-     //   login_token = getArguments().getString("login_token");
+        //   login_token = getArguments().getString("login_token");
         return view;
     }
 
@@ -191,20 +199,20 @@ public class HomeFragment extends Fragment {
         milestone.setVisibility(View.VISIBLE);
 
 
-       // mImageView = findViewById(R.id.imageView);
+        // mImageView = findViewById(R.id.imageView);
         mProgressDialog = new ProgressDialog(context);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setTitle("Parenting");
         mProgressDialog.setMessage("Please wait, we are downloading your image file...");
-       // getEntries();
-      binding.btnMilestone.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              Intent  mainIntent = new Intent(context, QuestionsMilestonesActivity.class);
-              startActivity(mainIntent);
-          }
-      });
+        // getEntries();
+        binding.btnMilestone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  mainIntent = new Intent(context, QuestionsMilestonesActivity.class);
+                startActivity(mainIntent);
+            }
+        });
 
         binding.addChild.setOnClickListener(view12 -> {
             Intent add_child = new Intent(context, AddChildName.class);
@@ -213,10 +221,9 @@ public class HomeFragment extends Fragment {
 
         binding.homeShare.setOnClickListener(view12 -> {
 
-           // mMyTask = new DownloadTask().execute(url1,url2);
+            // mMyTask = new DownloadTask().execute(url1,url2);
             if (!images.isEmpty())
             {
-
                 if (images.size() == 2)
                 {
                     url1 = stringToURL(images.get(0));
@@ -228,12 +235,11 @@ public class HomeFragment extends Fragment {
                     mMyTask = new DownloadTask().execute(url1);
 
                 }
-
             }
         });
 
         binding.btnRegister.setOnClickListener(view12 -> {
-              checkNetWorkComplit();
+            checkNetWorkComplit();
         });
 
 
@@ -256,7 +262,7 @@ public class HomeFragment extends Fragment {
             H.L("size;;;"+images.size());
         });
         binding.homeVideo.setOnClickListener(view12 -> {
-          //  showVideoi();
+            //  showVideoi();
             showpopupTitleDeedUpload();
         });
         binding.homeAlarm.setOnClickListener(view12 -> {
@@ -268,7 +274,7 @@ public class HomeFragment extends Fragment {
         try {
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
-          //  Log.d("Arraym", String.valueOf(jsonArray.length()));
+            //  Log.d("Arraym", String.valueOf(jsonArray.length()));
             for (int i=0;i<jsonArray.length();i++)
             {
                 ChildDetails childDetails=new ChildDetails();
@@ -292,40 +298,84 @@ public class HomeFragment extends Fragment {
         // attaching data adapter to spinner
         child.setAdapter(dataAdapter);
 
-        child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                String text = parent.getItemAtPosition(pos).toString();
+        if (childs.size() == 1)
+        {
+            child.setEnabled(false);
+            for (int j = 0; j < childDetails1.size(); j++)
+            {
+                child_id = childDetails1.get(j).getId();
+                H.L("call"+childDetails1.get(j).getId());
+                checkNetWork();
+                Prefs.setChildID(context, child_id);
+                break;
+            }
 
-                for (int j = 0; j < childDetails1.size(); j++) {
-                    if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
-                    {
-                        child_id = childDetails1.get(j).getId();
-                        H.L("idd"+childDetails1.get(j).getId());
-                        checkNetWork();
-                        Prefs.setChildID(context, child_id);
-                        break;
+        }
+        else
+        {
+            n=1;
+            child.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                    String text = parent.getItemAtPosition(pos).toString();
+                    JSONArray    jsonArray1 = new JSONArray();
+                    for (int j = 0; j < childDetails1.size(); j++) {
+                        JSONObject object = new JSONObject();
+                        if (text.equalsIgnoreCase(childDetails1.get(j).getChild_name()))
+                        {
+                            child_id = childDetails1.get(j).getId();
+                            H.L("idd"+childDetails1.get(j).getId());
+                            checkNetWork();
+                            Prefs.setChildID(context, child_id);
+
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(0,object);
+                                // Prefs.setChildDetails(context, jsonArray1.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            // break;
+                        }
+                        else {
+                            try {
+                                object.put("child_id", childDetails1.get(j).getId());
+                                object.put("child_name", childDetails1.get(j).getChild_name());
+                                jsonArray1.put(n,object);
+                                n++;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
 
                     }
+                    Prefs.setChildDetails(context, jsonArray1.toString());
+                    n=1;
+
                 }
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
-            }
-        });
+        }
 
 
         target_Activity.setOnClickListener(view1 -> {
             if(!isvisible){
                 show_activity.setVisibility(View.VISIBLE);
+                binding.minus.setImageResource(R.drawable.minus);
                 isvisible = true;
             }else {
                 show_activity.setVisibility(View.GONE);
+                binding.minus.setImageResource(R.drawable.plus);
                 isvisible = false;
             }
         });
     }
-
 
 
     private void checkNetWork() {
@@ -343,162 +393,248 @@ public class HomeFragment extends Fragment {
 
     private void getTodayActivity() {
         images.clear();
-       binding. loading.setVisibility(View.VISIBLE);
+
+        binding. loading.setVisibility(View.VISIBLE);
         todaysactivityCheck.login_token= Prefs.getLoginToken(getActivity());
         todaysactivityCheck.child_id= child_id;
         Call<TodayAcyivityResponse> call = ApiClient.getRetrofit().create(Api.class).getTodayActivity(todaysactivityCheck);
         call.enqueue(new Callback<TodayAcyivityResponse>() {
             @Override
             public void onResponse(Call <TodayAcyivityResponse> call, Response<TodayAcyivityResponse> response) {
-               binding.loading.setVisibility(View.GONE);
+                binding.loading.setVisibility(View.GONE);
                 H.L("responsennnn=" + new Gson().toJson(response.body()));
-                 todayAcyivityResponse=response.body();
+                todayAcyivityResponse=response.body();
                 if (todayAcyivityResponse !=null && response.code() == 200)
                 {
                     if (todayAcyivityResponse.error.equals("false"))
-                      {
-                          binding.numOfActivityCompleted.setText(todayAcyivityResponse.total_activities_completed);
+                    {
+                        binding.numOfActivityCompleted.setText(todayAcyivityResponse.total_activities_completed);
                         //  binding.numOfPointsEarned.setText(response1.badges);
-                          binding.numOfPointsEarned.setText(todayAcyivityResponse.total_points);
-                          if (todayAcyivityResponse.activitiesDetails !=null)
-                          {
-                              binding.tvTargetActivity.setText(todayAcyivityResponse.activitiesDetails.category_name);
-                              binding.tvActivityName.setText(todayAcyivityResponse.activitiesDetails.activity_name);
-                              binding.homeEdtDescription.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_description));
-                              binding.edtLearning.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_learning));
+                        binding.numOfPointsEarned.setText(todayAcyivityResponse.total_points);
+                        if (todayAcyivityResponse.activitiesDetails !=null)
+                        {
+                            binding.tvTargetActivity.setText(todayAcyivityResponse.activitiesDetails.category_name);
+                            binding.tvActivityName.setText(todayAcyivityResponse.activitiesDetails.activity_name);
+                            binding.homeEdtDescription.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_description));
+                            binding.edtLearning.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_learning));
 
-                              if (todayAcyivityResponse.activitiesDetails.iscompleted)
-                              {
-                                  binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
-                              }
-                              else {
-                                  binding.btnRegister.setText(getResources().getString(R.string.we_did_it));
-                              }
-                              activity_id=todayAcyivityResponse.activitiesDetails.activity_id;
-                              images.addAll(todayAcyivityResponse.activities_imgs);
-                              if (todayAcyivityResponse.activitiesDetails.isalarmset)
-                              {
-                                  isalarmset=false;
-                                  binding.homeAlarm.setImageDrawable(getResources().getDrawable(R.drawable.alarm_off));
-                              }
-                              else
-                              {
-                                  isalarmset=true;
-                                  binding.homeAlarm.setImageDrawable(getResources().getDrawable(R.drawable.alarm));
-                              }
+                            if (todayAcyivityResponse.activitiesDetails.iscompleted)
+                            {
+                                binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
+                            }
+                            else {
+                                binding.btnRegister.setText(getResources().getString(R.string.we_did_it));
+                            }
+                            activity_id=todayAcyivityResponse.activitiesDetails.activity_id;
+                            images.addAll(todayAcyivityResponse.activities_imgs);
+                            if (todayAcyivityResponse.activitiesDetails.isalarmset)
+                            {
+                                isalarmset=false;
+                                binding.homeAlarm.setImageDrawable(getResources().getDrawable(R.drawable.alarm_off));
+                            }
+                            else
+                            {
+                                isalarmset=true;
+                                binding.homeAlarm.setImageDrawable(getResources().getDrawable(R.drawable.alarm));
+                            }
 
-                              if (todayAcyivityResponse.milestone)
-                              {
-                                  binding.milestoneLayout.setVisibility(View.INVISIBLE);
-                              }
-                              else {
-                                  binding.milestoneLayout.setVisibility(View.VISIBLE);
-                              }
+                            if (todayAcyivityResponse.milestone)
+                            {
+                                binding.milestoneLayout.setVisibility(View.INVISIBLE);
+                            }
+                            else {
+                                binding.milestoneLayout.setVisibility(View.VISIBLE);
+                            }
+                        }
 
-                          }
+                        garphpointDetails1.clear();
 
-                          garphpointDetails1.clear();
+                        if (todayAcyivityResponse.activities_imgs.size()>0)
+                        {
+                            adapterImageListing = new AdapterImageListing(context,images,binding.homeCamera);
+                            binding.rvList.setAdapter(adapterImageListing);
+                        }
+
+                        for (Object key : todayAcyivityResponse.graph_point.keySet()) {
+                            GarphpointDetails garphpointDetails=new GarphpointDetails();
+                            Double value=(Double)todayAcyivityResponse.graph_point.get(key);
+                            point=value.floatValue();
+                            garphpointDetails.setId(key.toString());
+                            garphpointDetails.setValue(point);
+                            garphpointDetails1.add(garphpointDetails);
+
+                        }
+                        print3largest(garphpointDetails1);
+                        if (point==0)
+                        {
+                            pieChart.setVisibility(View.GONE);
+
+                        }
+                        else {
+                            pieEntries = new ArrayList<>();
+                            colors  = new ArrayList<Integer>();
+                            pieChart.setVisibility(View.VISIBLE);
+
+                            for (int i=0;i<garphpointDetails1.size();i++)
+                            {
+                                String id =garphpointDetails1.get(i).getId();
+                                point =garphpointDetails1.get(i).getValue();
+
+                                //   H.L("id"+point);
+
+                                if (id.equalsIgnoreCase("1"))
+                                {
+                                    //  pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.language_icon)));
+                                    point1=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        lang_color=getResources().getColor(R.color.language_dark);
+                                    }
+                                    else {
+                                        lang_color=getResources().getColor(R.color.language);
+                                    }
+
+                                }
+                                else if (id.equalsIgnoreCase("2")){
+                                    point2=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        logic_color=getResources().getColor(R.color.logic_dark);
+
+                                    }
+                                    else {
+                                        logic_color=getResources().getColor(R.color.logic);
+                                    }
 
 
-                          if (todayAcyivityResponse.activities_imgs.size()>0)
-                          {
-                              adapterImageListing = new AdapterImageListing(context,images,binding.homeCamera);
-                              binding.rvList.setAdapter(adapterImageListing);
-                          }
+                                }
+                                else if (id.equalsIgnoreCase("3"))
+                                {
+                                    point3=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        physical=getResources().getColor(R.color.physical_dark);
+                                    }
+                                    else {
+                                        physical=getResources().getColor(R.color.physical);
+                                    }
+                                }
+                                else if (id.equalsIgnoreCase("4")){
+                                    point4=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        intrapersonal=getResources().getColor(R.color.intrapersonal_dark);
+                                    }
+                                    else {
+                                        intrapersonal=getResources().getColor(R.color.intrapersonal);
+                                    }
+                                }
+                                else if (id.equalsIgnoreCase("5")){
+                                    point5=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        interpersonal=getResources().getColor(R.color.interpersonal_dark);
+                                    }
+                                    else {
+                                        interpersonal=getResources().getColor(R.color.interpersonal);
+                                    }
 
-                          for (Object key : todayAcyivityResponse.graph_point.keySet()) {
-                              GarphpointDetails garphpointDetails=new GarphpointDetails();
-                              Double value=(Double)todayAcyivityResponse.graph_point.get(key);
-                              point=value.floatValue();
-                              garphpointDetails.setId(key.toString());
-                              garphpointDetails.setValue(point);
-                              garphpointDetails1.add(garphpointDetails);
+                                }
+                                else if (id.equalsIgnoreCase("6")){
+                                    point6=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        spatial=getResources().getColor(R.color.spatial_dark);
+                                    }
+                                    else {
+                                        spatial=getResources().getColor(R.color.spatial);
+                                    }
 
-                          }
+                                }
+                                else if (id.equalsIgnoreCase("7")){
+                                    point7=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        music=getResources().getColor(R.color.music_dark);
+                                    }
+                                    else {
+                                        music=getResources().getColor(R.color.music);
+                                    }
+                                }
+                                else if (id.equalsIgnoreCase("8")){
+                                    point8=point;
+                                    if (firstid.equalsIgnoreCase(id) || secodid.equalsIgnoreCase(id) || thirdid.equalsIgnoreCase(id))
+                                    {
+                                        environment=getResources().getColor(R.color.environment_dark);
+                                    }
+                                    else {
+                                        environment=getResources().getColor(R.color.environment);
+                                    }
+                                }
 
-                           if (point==0)
-                           {
-                               pieChart.setVisibility(View.GONE);
-                           }
-                           else {
-                               pieEntries = new ArrayList<>();
-                               pieChart.setVisibility(View.VISIBLE);
-                             for (int i=0;i<garphpointDetails1.size();i++)
-                             {
-                                 String id =garphpointDetails1.get(i).getId();
-                                 point =garphpointDetails1.get(i).getValue();
-
-                                 if (id.equalsIgnoreCase("1"))
+                                //     ArrayList<Integer> colors = new ArrayList<Integer>();
+                             /*    final int[] MY_COLORS ;
+                                 if (point==1)
                                  {
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.language_icon)));
-                                 }
-                                 else if (id.equalsIgnoreCase("2")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.logic_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("3")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.physical_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("4")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.intrapersonal_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("5")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.interpersonal_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("6")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.spatial_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("7")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.music_icon)));
-
-                                 }
-                                 else if (id.equalsIgnoreCase("8")){
-                                     pieEntries.add(new PieEntry(point,"", getResources().getDrawable(R.drawable.environment_icon)));
 
                                  }
 
-                                 final int[] MY_COLORS = {getResources().getColor(R.color.language), getResources().getColor(R.color.logic),
-                                         getResources().getColor(R.color.physical), getResources().getColor(R.color.intrapersonal),
-                                         getResources().getColor(R.color.interpersonal),getResources().getColor(R.color.spatial),
-                                         getResources().getColor(R.color.music),getResources().getColor(R.color.environment)};
-                                 ArrayList<Integer> colors = new ArrayList<Integer>();
+                                MY_COLORS = new int[]{lang_color, logic_color,
+                                       physical,intrapersonal,
+                                        interpersonal ,spatial,
+                                        music,environment};*/
 
-                                 for(int c: MY_COLORS) colors.add(c);
 
-                                 pieDataSet = new PieDataSet(pieEntries, "");
-                                 pieData = new PieData(pieDataSet);
-                                 pieData.setValueFormatter(new PercentFormatter(pieChart));
-                                 pieChart.setData(pieData);
 
-                                 pieChart.setHoleRadius(70.0f);
-                                 pieChart.setTransparentCircleAlpha(0);
 
-                                 pieDataSet.setColors(colors);
-                                 pieDataSet.setValueTextColor(Color.BLACK);
-                                 pieDataSet.setValueTextSize(10f);
-                                 pieDataSet.setSelectionShift(0f);
-                                 pieChart.getData().setDrawValues(false);
+                            }
 
-                                 pieChart.setRotationEnabled(false);
-                                 pieDataSet.setIconsOffset(new MPPointF(0, 50));
-                                 pieChart.getDescription().setEnabled(false);
+                            MY_COLORS = new int[]{lang_color, logic_color, physical,intrapersonal, interpersonal ,spatial, music,environment};
 
-                                 pieChart.setExtraOffsets(40, 0, 40, 0);
+                            for(int c: MY_COLORS) colors.add(c);
+                            pieEntries = new ArrayList<>();
 
-                                 Legend legend = pieChart.getLegend();
-                                 legend.setEnabled(true);
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.language_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.logic_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.physical_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.intrapersonal_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.interpersonal_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.spatial_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.music_icon)));
+                            pieEntries.add(new PieEntry(3,"", getResources().getDrawable(R.drawable.environment_icon)));
 
-                             }
+                            pieDataSet = new PieDataSet(pieEntries, "");
+                            pieData = new PieData(pieDataSet);
+                            pieData.setValueFormatter(new PercentFormatter(pieChart));
+                            pieChart.setData(pieData);
 
-                           }
-                      }
+                            pieChart.setHoleRadius(70.0f);
+                            pieChart.setTransparentCircleAlpha(0);
+
+                            pieDataSet.setColors(colors);
+                            pieChart.notifyDataSetChanged();
+                            pieChart.invalidate();
+                            pieDataSet.setValueTextColor(Color.BLACK);
+                            pieDataSet.setValueTextSize(10f);
+                            pieDataSet.setSelectionShift(0f);
+                            pieChart.getData().setDrawValues(false);
+
+                            pieChart.setRotationEnabled(false);
+
+                            pieDataSet.setIconsOffset(new MPPointF(0, 50));
+
+                            pieChart.getDescription().setText("stimulasi");
+                            pieChart.setExtraOffsets(20, 0, 20, 0);
+                            Legend legend = pieChart.getLegend();
+                            legend.setEnabled(true);
+
+
+
+                        }
+                    }
                 }
                 else
-                    {
+                {
                     Logout.L(context);
                 }
             }
@@ -547,20 +683,20 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<AcyivitySendComResponse> call, Response<AcyivitySendComResponse> response) {
                 binding.loading.setVisibility(View.GONE);
                 AcyivitySendComResponse response1= response.body();
-                     if (response1 !=null)
-                     {
-                         if(response1.error.equals("false")){
-                             H.T(context,response1.message);
-                             binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
-                         }else {
-                             H.T(context,response1.message);
-                         }
-                     }
+                if (response1 !=null)
+                {
+                    if(response1.error.equals("false")){
+                        H.T(context,response1.message);
+                        binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
+                    }else {
+                        H.T(context,response1.message);
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<AcyivitySendComResponse> call, Throwable t) {
-              //  Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -610,7 +746,7 @@ public class HomeFragment extends Fragment {
         if (requestCode == FROM_CAMERA) {
 
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-          //  addImage(bitmap);
+            //  addImage(bitmap);
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
             img_base64=BitMapToString(resizedBitmap);
             checkNetWorkprofile();
@@ -622,7 +758,7 @@ public class HomeFragment extends Fragment {
                 Uri selectedImage = data.getData();
                 InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
                 Bitmap   bitmap = BitmapFactory.decodeStream(imageStream);
-             //   addImage(bitmap);
+                //   addImage(bitmap);
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
                 img_base64=BitMapToString(resizedBitmap);
                 checkNetWorkprofile();
@@ -699,7 +835,6 @@ public class HomeFragment extends Fragment {
         byte[] b = baos.toByteArray();
 //String encodedImage = Base64.encode(b, Base64.DEFAULT);
         String encodedImage= Base64.encodeToString(b,Base64.DEFAULT);
-
         return encodedImage;
 
     }
@@ -735,7 +870,7 @@ public class HomeFragment extends Fragment {
 
     private void addImage(Bitmap bitmap) {
         try {
-          binding .homeImg.setImageBitmap(bitmap);
+            binding .homeImg.setImageBitmap(bitmap);
         } catch (Exception e) {
             //e.printStackTrace();();
         }
@@ -940,7 +1075,7 @@ public class HomeFragment extends Fragment {
                     // Add the bitmap to list
                     bitmaps.add(bmp);
                     // add the url to list URL
-                   // imageName.add(currentURL);
+                    // imageName.add(currentURL);
 
                     // Publish the async task progress
                     // Added 1, because index start from 0
@@ -961,7 +1096,6 @@ public class HomeFragment extends Fragment {
         }
 
         // When all async task done
-        @SuppressLint("WrongThread")
         protected void onPostExecute(List<Bitmap> result){
             // Hide the progress dialog
             mProgressDialog.dismiss();
@@ -970,13 +1104,13 @@ public class HomeFragment extends Fragment {
             for(int i=0;i<result.size();i++){
                 Bitmap bitmap = result.get(i);
                 // Save the bitmap to internal storage
-             //   Uri imageInternalUri = (bitmap, i);
+                //   Uri imageInternalUri = (bitmap, i);
                 // Display the bitmap from memory
-            //    addNewImageViewToLayout(bitmap);
+                //    addNewImageViewToLayout(bitmap);
 
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-              //  String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title2", null);
+                //  String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title2", null);
 
                 String path = MediaStore.Images.Media.insertImage(context.getContentResolver(),
                         bitmap, "Title2", null);
@@ -1049,8 +1183,56 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-       // binding = null;
+        // binding = null;
     }
 
+
+    private void print3largest(List<GarphpointDetails> garphpointDetails1)
+    {
+        float first, second, third;
+        int i;
+
+        third = first = second = Integer.MIN_VALUE;
+        for (i = 0; i < garphpointDetails1.size() ; i ++)
+        {
+            /* If current element is greater than first*/
+            if (garphpointDetails1.get(i).getValue() > first)
+            {
+                third = second;
+                second = first;
+                first =  garphpointDetails1.get(i).getValue();
+                firstid=garphpointDetails1.get(i).getId();
+            }
+
+            /* If arr[i] is in between first and second then update second  */
+            else if (garphpointDetails1.get(i).getValue() > second)
+            {
+                third = second;
+                second = garphpointDetails1.get(i).getValue();
+                secodid=garphpointDetails1.get(i).getId();
+                // id=garphpointDetails1.get(i).getId();
+            }
+
+            else if (garphpointDetails1.get(i).getValue() > third)
+            {
+                third = garphpointDetails1.get(i).getValue();
+                thirdid=garphpointDetails1.get(i).getId();
+
+            }
+
+
+            //   H.L("sad"+id);
+            //  break;
+
+
+        }
+
+
+        H.L("id"+firstid);
+        H.L("id"+secodid);
+        H.L("id"+thirdid);
+
+
+    }
 
 }

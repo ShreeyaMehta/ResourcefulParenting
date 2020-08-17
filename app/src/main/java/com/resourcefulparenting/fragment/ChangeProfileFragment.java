@@ -137,7 +137,14 @@ public class ChangeProfileFragment extends Fragment {
             e.printStackTrace();
         }
 
-
+        if (childDetails1.size() == 1)
+        {
+            btn_delete_profile.setVisibility(View.GONE);
+        }
+        else
+        {
+            btn_delete_profile.setVisibility(View.VISIBLE);
+        }
 
         checkNetWor1k();
         btn_save_changes_profile.setOnClickListener(view1 -> {
