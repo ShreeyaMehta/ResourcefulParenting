@@ -79,7 +79,7 @@ public class AddChildAge extends AppCompatActivity implements AdapterView.OnItem
                 dates = String.valueOf(date_);
                 months = String.valueOf(month_);
                 yearss = String.valueOf(year_);
-                if(ages > 2) {
+                if(ages >= 2) {
                     Intent next = new Intent(context, ChildInstructions.class);
                     next.putExtra("name", name);
                     next.putExtra("gender", gender);
@@ -106,7 +106,7 @@ public class AddChildAge extends AppCompatActivity implements AdapterView.OnItem
 
         years = new ArrayList<Integer>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        int yearnew=thisYear-6;
+        int yearnew = thisYear-6;
         for (int i = yearnew; i <= thisYear; i++) {
             years.add(i);
         }

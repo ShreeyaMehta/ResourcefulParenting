@@ -156,8 +156,7 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 
             if (items.checked) {
                 holder.ivTick.setVisibility(View.VISIBLE);
-                if (items.id.equalsIgnoreCase("1"))
-                {
+                if (items.id.equalsIgnoreCase("1")) {
                     holder.activity_img_.setImageResource(R.drawable.circlelanguage);
                 }
                 else  if (items.id.equalsIgnoreCase("2")){
@@ -184,8 +183,7 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 
             } else {
                 holder.ivTick.setVisibility(View.GONE);
-                if (items.id.equalsIgnoreCase("1"))
-                {
+                if (items.id.equalsIgnoreCase("1")) {
                     holder.activity_img_.setImageResource(R.drawable.circlelanguage);
                 }
                 else  if (items.id.equalsIgnoreCase("2")){
@@ -211,8 +209,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
                 }
             }
 
-
-
             holder.activity_img_.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -229,16 +225,7 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
                     checkNetWorkComplit();
                 }
             });
-
-/*
-
-    holder.tvName.setText(items.message);
-    holder.tvDate.setText(items.created_at);
-*/
-
         }
-
-
 
         @Override
         public int getItemCount() {
@@ -260,11 +247,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 //            points_img_ = itemView.findViewById(R.id.points_img_);
                 activity_img_ = itemView.findViewById(R.id.activity_img_);
                 ivTick = itemView.findViewById(R.id.ivTick);
-
-                /*
-
-                 */
-
             }
         }
 
@@ -300,8 +282,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
 
 
             //   loading.setVisibility(View.GONE);
-
-
 
             activitySendCheck1.login_token= Prefs.getLoginToken(context);
             activitySendCheck1.child_id=Prefs.getChildID(context);

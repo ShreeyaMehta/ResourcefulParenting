@@ -43,7 +43,6 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/environment_white_icon"
                 android:layout_gravity="center_vertical"/>
 
             <TextView

@@ -420,6 +420,24 @@ public class HomeFragment extends Fragment {
                             binding.homeEdtDescription.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_description));
                             binding.edtLearning.setText(Html.fromHtml(todayAcyivityResponse.activitiesDetails.activity_learning));
 
+                            if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("1")){
+                                binding.targetIcon.setImageResource(R.drawable.language_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("2")){
+                                binding.targetIcon.setImageResource(R.drawable.logic_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("3")){
+                                binding.targetIcon.setImageResource(R.drawable.physical_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("4")){
+                                binding.targetIcon.setImageResource(R.drawable.intrapersonal_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("5")){
+                                binding.targetIcon.setImageResource(R.drawable.interpersonal_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("6")){
+                                binding.targetIcon.setImageResource(R.drawable.spatial_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("7")){
+                                binding.targetIcon.setImageResource(R.drawable.music_white_icon);
+                            }else if(todayAcyivityResponse.activitiesDetails.category_id.equalsIgnoreCase("8")){
+                                binding.targetIcon.setImageResource(R.drawable.environment_white_icon);
+                            }
+
                             if (todayAcyivityResponse.activitiesDetails.iscompleted)
                             {
                                 binding.btnRegister.setText(getResources().getString(R.string.do_it_again));
@@ -729,7 +747,6 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FROM_CAMERA) {
-
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             //  addImage(bitmap);
             Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
@@ -737,7 +754,6 @@ public class HomeFragment extends Fragment {
             checkNetWorkprofile();
 
         }
-
         else if (requestCode == FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
             try {
                 Uri selectedImage = data.getData();
@@ -748,8 +764,6 @@ public class HomeFragment extends Fragment {
                 img_base64=BitMapToString(resizedBitmap);
                 checkNetWorkprofile();
                 H.L("img_base64"+img_base64);
-
-
             } catch (Exception e) {
                 //e.printStackTrace();();
             }
@@ -855,7 +869,7 @@ public class HomeFragment extends Fragment {
 
     private void addImage(Bitmap bitmap) {
         try {
-            binding .homeImg.setImageBitmap(bitmap);
+            binding.homeImg.setImageBitmap(bitmap);
         } catch (Exception e) {
             //e.printStackTrace();();
         }

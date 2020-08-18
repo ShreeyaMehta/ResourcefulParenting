@@ -71,7 +71,6 @@ public class ExplorerFragment extends Fragment {
 
         binding.environment.setOnClickListener(view1 -> {
             ((InsideExplorer)getActivity()).environment();
-            name = "physical";
             Prefs.setCategory_id(context, "8");
             Prefs.setChildID(context, child_id);
             name = "environment";
@@ -147,8 +146,6 @@ public class ExplorerFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, R.layout.spinner_text, childs);
         // attaching data adapter to spinner
