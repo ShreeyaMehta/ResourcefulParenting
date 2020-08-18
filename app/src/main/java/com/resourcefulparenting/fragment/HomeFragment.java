@@ -1,5 +1,6 @@
 package com.resourcefulparenting.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -271,6 +272,7 @@ public class HomeFragment extends Fragment {
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         binding.rvList.setLayoutManager(mLayoutManager);
+
         try {
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
@@ -493,7 +495,6 @@ public class HomeFragment extends Fragment {
                                     else {
                                         lang_color=getResources().getColor(R.color.language);
                                     }
-
                                 }
                                 else if (id.equalsIgnoreCase("2")){
                                     point2=point;
@@ -571,22 +572,6 @@ public class HomeFragment extends Fragment {
                                         environment=getResources().getColor(R.color.environment);
                                     }
                                 }
-
-                                //     ArrayList<Integer> colors = new ArrayList<Integer>();
-                             /*    final int[] MY_COLORS ;
-                                 if (point==1)
-                                 {
-
-                                 }
-
-                                MY_COLORS = new int[]{lang_color, logic_color,
-                                       physical,intrapersonal,
-                                        interpersonal ,spatial,
-                                        music,environment};*/
-
-
-
-
                             }
 
                             MY_COLORS = new int[]{lang_color, logic_color, physical,intrapersonal, interpersonal ,spatial, music,environment};
@@ -757,7 +742,7 @@ public class HomeFragment extends Fragment {
             try {
                 Uri selectedImage = data.getData();
                 InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
-                Bitmap   bitmap = BitmapFactory.decodeStream(imageStream);
+                Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
                 //   addImage(bitmap);
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
                 img_base64=BitMapToString(resizedBitmap);
@@ -1096,6 +1081,7 @@ public class HomeFragment extends Fragment {
         }
 
         // When all async task done
+        @SuppressLint("WrongThread")
         protected void onPostExecute(List<Bitmap> result){
             // Hide the progress dialog
             mProgressDialog.dismiss();
