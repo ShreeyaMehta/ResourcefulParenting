@@ -263,6 +263,24 @@ public class ActivityDetailsFragment extends Fragment {
                         binding.edtDescription.setText(Html.fromHtml(response1.activityinfo.activity_description));
                         binding.edtLearning.setText(Html.fromHtml(response1.activityinfo.activity_learning));
 
+                        if(response1.activityinfo.category_name.equalsIgnoreCase("komunikasi")){
+                            binding.targetIcon.setImageResource(R.drawable.language_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("angka-logika")){
+                            binding.targetIcon.setImageResource(R.drawable.logic_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("gerak")){
+                            binding.targetIcon.setImageResource(R.drawable.physical_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("diri")){
+                            binding.targetIcon.setImageResource(R.drawable.intrapersonal_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("sosial")){
+                            binding.targetIcon.setImageResource(R.drawable.interpersonal_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("visual")){
+                            binding.targetIcon.setImageResource(R.drawable.spatial_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("musik")){
+                            binding.targetIcon.setImageResource(R.drawable.music_white_icon);
+                        }else  if(response1.activityinfo.category_name.equalsIgnoreCase("lingkungan")){
+                            binding.targetIcon.setImageResource(R.drawable.environment_white_icon);
+                        }
+
                         if (response1.activityinfo.isalarmset)
                         {
                             isalarmset=false;
