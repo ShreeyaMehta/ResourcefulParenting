@@ -52,7 +52,6 @@ public class AddChildAge extends AppCompatActivity implements AdapterView.OnItem
     ArrayList<Integer> years;
     String login_token, name, gender, dates, months, yearss;
     final AddChildCheck addChildCheck = new AddChildCheck();
-    Queries qureies[] = {};
     private RelativeLayout loading;
 
 

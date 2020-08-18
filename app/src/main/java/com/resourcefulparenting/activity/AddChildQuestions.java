@@ -44,15 +44,14 @@ public class AddChildQuestions extends AppCompatActivity  {
     String points = "0";
    // private boolean click = true;
     TextView question,tv_total;
-    Button btn1, btn2, btn3, btn4, btn5, next, back, submit;
+    Button btn1, btn2, btn3, btn4, btn5, next, back;
     private RelativeLayout loading;
     private int current_question = 0;
     ImageView img_back;
 
     ArrayList<QueriesResponse.Query> result;
-    Queries queries[] = {};
     final AddChildCheck addChildCheck = new AddChildCheck();
-    JSONObject jObjd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
