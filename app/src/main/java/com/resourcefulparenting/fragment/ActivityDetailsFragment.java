@@ -1,5 +1,6 @@
 package com.resourcefulparenting.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,10 +14,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +38,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -341,25 +345,22 @@ public class ActivityDetailsFragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(getResources().getString(R.string.take_photo));
             builder.setItems(items, new DialogInterface.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 public void onClick(DialogInterface dialog, int item) {
                     switch (item) {
                         case 0:
-                            if (CheckPermission.checkDeviceOS()) {
-                                if (checkPermission.checkStoragePermission()) {
-                                    openGallery();
-                                }
+                            if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CheckPermission.STORAGE_PERMISSION_REQUEST_CODE);
                             } else {
                                 openGallery();
                             }
                             break;
 
                         case 1:
-                            if (CheckPermission.checkDeviceOS()) {
-                                if (checkPermission.checkCameraPermission()) {
-                                    openCamera();
-                                }
-
-                            } else {
+                            if (context.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                requestPermissions(new String[]{Manifest.permission.CAMERA}, CheckPermission.CAMERA_PERMISSION_REQUEST_CODE);
+                            }
+                            else {
                                 openCamera();
                             }
                             break;
@@ -401,64 +402,55 @@ public class ActivityDetailsFragment extends Fragment {
 
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        try {
-            //H.L("onRequestPermissionsResult");
-            switch (requestCode) {
-                case CheckPermission.STORAGE_PERMISSION_REQUEST_CODE:
-                    // If request is cancelled, the result arrays are empty.
-                    if (grantResults.length > 0
-                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        openGallery();
-
-                    } else {
-                        // Helper.LOG("Permission rejected");
-                    }
-
-                    break;
-                case CheckPermission.CAMERA_PERMISSION_REQUEST_CODE:
-                    if (grantResults.length > 0
-                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        openCamera();
-                    } else {
-                        //  Helper.LOG("Permission rejected");
-                    }
-                    break;
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CheckPermission.CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+                Toast.makeText(context, "camera permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "camera permission denied", Toast.LENGTH_LONG).show();
             }
-        } catch (Exception e) {
-            //  Helper.LOG(e.toString());
         }
+        else if (requestCode == CheckPermission.STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+                Toast.makeText(context, "Gallery permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "Gallery permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FROM_CAMERA) {
+        if(data != null) {
+            if (requestCode == FROM_CAMERA) {
 
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            //  addImage(bitmap);
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
-            img_base64=BitMapToString(resizedBitmap);
-            checkNetWorkprofile();
-
-        }
-
-        else if (requestCode == FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
-            try {
-                Uri selectedImage = data.getData();
-                InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
-                Bitmap   bitmap = BitmapFactory.decodeStream(imageStream);
-                //   addImage(bitmap);
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                //  addImage(bitmap);
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
-                img_base64=BitMapToString(resizedBitmap);
+                img_base64 = BitMapToString(resizedBitmap);
                 checkNetWorkprofile();
-                H.L("img_base64"+img_base64);
+
+            } else if (requestCode == FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+                try {
+                    Uri selectedImage = data.getData();
+                    InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
+                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                    //   addImage(bitmap);
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
+                    img_base64 = BitMapToString(resizedBitmap);
+                    checkNetWorkprofile();
+                    H.L("img_base64" + img_base64);
 
 
-            } catch (Exception e) {
-                //e.printStackTrace();();
+                } catch (Exception e) {
+                    //e.printStackTrace();();
+                }
             }
         }
-
 
     }
 

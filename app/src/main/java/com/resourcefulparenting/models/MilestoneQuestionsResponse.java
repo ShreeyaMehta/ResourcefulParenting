@@ -23,13 +23,16 @@ public class MilestoneQuestionsResponse {
 
         @SerializedName("id")
         @Expose
-        public String id;
+        public String id1;
         @SerializedName("question")
         @Expose
         public String question;
         @SerializedName("answer")
         @Expose
         public boolean checked;
+        @SerializedName("category_id")
+        @Expose
+        public String id;
 
 
     }

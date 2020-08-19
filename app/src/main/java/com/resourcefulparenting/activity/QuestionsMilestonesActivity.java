@@ -51,6 +51,7 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
     Context context;
     AdapterQustionListing adapterListing;
     AppCompatButton btn_register;
+    HashMap<String, String> hs = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,7 +181,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
                 else  if (items.id.equalsIgnoreCase("8")){
                     holder.activity_img_.setImageResource(R.drawable.circleenvironment);
                 }
-
             } else {
                 holder.ivTick.setVisibility(View.GONE);
                 if (items.id.equalsIgnoreCase("1")) {
@@ -215,13 +215,21 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
                     MilestoneQuestionsResponse.QuestionDetails item = list.get(holder.getAdapterPosition());
                     item.checked = !item.checked;
                     notifyItemChanged(holder.getAdapterPosition());
-                    // ((ActivityListingFragment.activities)context).ActivityPage(items.activity_id,child_id);
+                    //((ActivityListingFragment.activities)context).ActivityPage(items.activity_id,child_id);
                 }
             });
 
             btn_register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).checked)
+                        {
+                            hs.put(list.get(i).id, "" + list.get(i).checked);
+                        }
+                        System.out.println("json " + hs);
+
+                    }
                     checkNetWorkComplit();
                 }
             });
@@ -236,7 +244,6 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-
 
             TextView tv_activity_name;
             ImageView activity_img_,ivTick;
@@ -264,28 +271,13 @@ public class QuestionsMilestonesActivity extends AppCompatActivity {
         }
         private void setCompletedActivity() {
             loading.setVisibility(View.VISIBLE);
-            JSONObject js = new JSONObject();
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).checked)
-                {
-                    try {
-                        js.put(list.get(i).id, list.get(i).checked);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.out.println("beer " + js);
-
-
-
-            }
 
 
             //   loading.setVisibility(View.GONE);
 
             activitySendCheck1.login_token= Prefs.getLoginToken(context);
             activitySendCheck1.child_id=Prefs.getChildID(context);
-            activitySendCheck1.questionDetails=js;
+            activitySendCheck1.questionDetails=hs;
             Call<MilestoneQuestionsSendResponse> call = ApiClient.getRetrofit().create(Api.class).milestoneQuestionsSend(activitySendCheck1);
             call.enqueue(new Callback<MilestoneQuestionsSendResponse>() {
                 @Override
