@@ -8,6 +8,6 @@ import java.util.HashMap;
 public class MilestoneQuestionSend {
     public String login_token;
     public String child_id;
-    public JSONObject questionDetails;
+    public HashMap questionDetails;
 
 }

@@ -1,5 +1,6 @@
 package com.resourcefulparenting.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -458,15 +459,19 @@ public class HomeFragment extends Fragment {
                                 binding.homeAlarm.setImageDrawable(getResources().getDrawable(R.drawable.alarm));
                             }
 
+                            //if true then reminder should be visible
+                            //if false then reminder should be invisible
+                            H.L("Milestone value " + todayAcyivityResponse.milestone.toString());
                             if (todayAcyivityResponse.milestone)
                             {
-                                binding.milestoneLayout.setVisibility(View.INVISIBLE);
-                            }
-                            else {
+                                H.L("Milestone value invisible" + todayAcyivityResponse.milestone.toString());
                                 binding.milestoneLayout.setVisibility(View.VISIBLE);
                             }
+                            else {
+                                H.L("Milestone value visible " + todayAcyivityResponse.milestone.toString());
+                                binding.milestoneLayout.setVisibility(View.INVISIBLE);
+                            }
                         }
-
                         garphpointDetails1.clear();
 
                         if (todayAcyivityResponse.activities_imgs.size()>0)
@@ -746,29 +751,28 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == FROM_CAMERA) {
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            //  addImage(bitmap);
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
-            img_base64=BitMapToString(resizedBitmap);
-            checkNetWorkprofile();
-
-        }
-        else if (requestCode == FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
-            try {
-                Uri selectedImage = data.getData();
-                InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
-                Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
-                //   addImage(bitmap);
+        if(data!= null) {
+            if (requestCode == FROM_CAMERA) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                //  addImage(bitmap);
                 Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
-                img_base64=BitMapToString(resizedBitmap);
+                img_base64 = BitMapToString(resizedBitmap);
                 checkNetWorkprofile();
-                H.L("img_base64"+img_base64);
-            } catch (Exception e) {
-                //e.printStackTrace();();
+            } else if (requestCode == FROM_GALLERY && resultCode == Activity.RESULT_OK && data != null) {
+                try {
+                    Uri selectedImage = data.getData();
+                    InputStream imageStream = context.getContentResolver().openInputStream(selectedImage);
+                    Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                    //   addImage(bitmap);
+                    Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmap, 500, 500, false);
+                    img_base64 = BitMapToString(resizedBitmap);
+                    checkNetWorkprofile();
+                    H.L("img_base64" + img_base64);
+                } catch (Exception e) {
+                    //e.printStackTrace();();
+                }
             }
         }
-
 
     }
 
@@ -778,25 +782,22 @@ public class HomeFragment extends Fragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(getResources().getString(R.string.take_photo));
             builder.setItems(items, new DialogInterface.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.M)
                 public void onClick(DialogInterface dialog, int item) {
                     switch (item) {
                         case 0:
-                            if (CheckPermission.checkDeviceOS()) {
-                                if (checkPermission.checkStoragePermission()) {
-                                    openGallery();
-                                }
+                            if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CheckPermission.STORAGE_PERMISSION_REQUEST_CODE);
                             } else {
                                 openGallery();
                             }
                             break;
 
                         case 1:
-                            if (CheckPermission.checkDeviceOS()) {
-                                if (checkPermission.checkCameraPermission()) {
-                                    openCamera();
-                                }
-
-                            } else {
+                            if (context.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                requestPermissions(new String[]{Manifest.permission.CAMERA}, CheckPermission.CAMERA_PERMISSION_REQUEST_CODE);
+                            }
+                            else {
                                 openCamera();
                             }
                             break;
@@ -837,7 +838,7 @@ public class HomeFragment extends Fragment {
         return encodedImage;
 
     }
-    @Override
+ /*   @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         try {
             //H.L("onRequestPermissionsResult");
@@ -865,6 +866,28 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
             //  Helper.LOG(e.toString());
         }
+    }*/
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CheckPermission.CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+                Toast.makeText(context, "camera permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "camera permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+        else if (requestCode == CheckPermission.STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+                Toast.makeText(context, "Gallery permission granted", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(context, "Gallery permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
     private void addImage(Bitmap bitmap) {

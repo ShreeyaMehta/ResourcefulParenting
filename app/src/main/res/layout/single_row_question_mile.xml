@@ -24,7 +24,7 @@
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:scaleType="fitXY"
-            android:src="@drawable/circlelogic"
+
             tools:ignore="ContentDescription" />
 
         <ImageView
