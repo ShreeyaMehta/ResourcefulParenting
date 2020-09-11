@@ -31,8 +31,10 @@ import com.resourcefulparenting.fragment.ExplorerFragment;
 import com.resourcefulparenting.fragment.HomeFragment;
 import com.resourcefulparenting.fragment.MyAccountGeneralFragment;
 import com.resourcefulparenting.R;
+import com.resourcefulparenting.fragment.PrivacyPolicyFragment;
 import com.resourcefulparenting.fragment.SetParentsNameFragment;
 import com.resourcefulparenting.databinding.ActivityMainBinding;
+import com.resourcefulparenting.fragment.TermsConditions;
 import com.resourcefulparenting.models.Input.MilestoneQuestionCheck;
 import com.resourcefulparenting.models.Input.NotificationSend;
 import com.resourcefulparenting.models.MilestoneQuestionsResponse;
@@ -154,6 +156,16 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
     public void changeProfile(String child_id1) {
         child_id=child_id1;
         loadFragment(new ChangeProfileFragment());
+    }
+
+    @Override
+    public void privacyPolicy() {
+        loadFragment(new PrivacyPolicyFragment());
+    }
+
+    @Override
+    public void termsConditions() {
+        loadFragment(new TermsConditions());
     }
 
     @Override

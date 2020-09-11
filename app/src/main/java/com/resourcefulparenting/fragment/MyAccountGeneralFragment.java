@@ -103,6 +103,9 @@ public class MyAccountGeneralFragment extends Fragment {
             getLogout();
         });
 
+        binding.accountPolicyText.setOnClickListener(view13 -> ((InsideAccount)getActivity()).privacyPolicy());
+        binding.accountTermsText.setOnClickListener(view12 -> ((InsideAccount)getActivity()).termsConditions());
+
         try {
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
@@ -169,6 +172,8 @@ public class MyAccountGeneralFragment extends Fragment {
         void setName();
         void changePassword();
         void changeProfile(String child_id1);
+        void privacyPolicy();
+        void termsConditions();
     }
 
     @Override
