@@ -10,7 +10,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static String Base_url = "http://rpi-app.com/api/";
+    private static String Base_url = "https://rpi-app.com/api/";
+  //  private static String Base_url = "https://resourcefulparenting.parkmapped.com/api/";
 
     private static Retrofit retrofit;
 
