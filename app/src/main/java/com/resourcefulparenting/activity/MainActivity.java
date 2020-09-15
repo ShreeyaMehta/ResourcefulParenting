@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.resourcefulparenting.fragment.AboutUsFragment;
 import com.resourcefulparenting.fragment.ActivityDetailsFragment;
 import com.resourcefulparenting.fragment.ActivityListingFragment;
 import com.resourcefulparenting.fragment.ActivityPageFragment;
@@ -166,6 +167,11 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
     @Override
     public void termsConditions() {
         loadFragment(new TermsConditions());
+    }
+
+    @Override
+    public void aboutUs() {
+        loadFragment(new AboutUsFragment());
     }
 
     @Override
