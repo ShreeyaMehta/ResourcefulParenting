@@ -105,7 +105,7 @@ public class MyAccountGeneralFragment extends Fragment {
 
         binding.accountPolicyText.setOnClickListener(view13 -> ((InsideAccount)getActivity()).privacyPolicy());
         binding.accountTermsText.setOnClickListener(view12 -> ((InsideAccount)getActivity()).termsConditions());
-
+        binding.accountAboutusText.setOnClickListener(view14 -> ((InsideAccount)getActivity()).aboutUs());
         try {
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
@@ -174,6 +174,7 @@ public class MyAccountGeneralFragment extends Fragment {
         void changeProfile(String child_id1);
         void privacyPolicy();
         void termsConditions();
+        void aboutUs();
     }
 
     @Override
