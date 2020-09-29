@@ -73,7 +73,7 @@ public class AddChildQuestions extends AppCompatActivity  {
         Toast.makeText(context, login_token , Toast.LENGTH_SHORT).show();*/
         bindView();
 
-       // Log.d("LinkedHaspMap", Main.main();)
+       // //Log.d("LinkedHaspMap", Main.main();)
 
         checkNetWork();
 
@@ -386,7 +386,7 @@ public class AddChildQuestions extends AppCompatActivity  {
                             object.put("child_id", addChildResponse.childDetails.id);
                             object.put("child_name", name);
                             jsonArray1.put(object);
-                          //  Log.d("data",jsonArray1.toString());
+                          //  //Log.d("data",jsonArray1.toString());
                             Prefs.setChildDetails(context, jsonArray1.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -417,7 +417,7 @@ public class AddChildQuestions extends AppCompatActivity  {
 
     @Override
     public void submit(JSONArray items) {
-        Log.d("Main item", String.valueOf(items));
+        //Log.d("Main item", String.valueOf(items));
 
         addChildCheck.login_token = login_token;
         addChildCheck.child_name = name;

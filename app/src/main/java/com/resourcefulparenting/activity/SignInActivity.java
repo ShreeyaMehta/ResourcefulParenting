@@ -89,11 +89,11 @@ public class SignInActivity extends AppCompatActivity {
      /*   if(isloggedin){
             userdetails.childDetails = new ArrayList<>();
             if(!userdetails.childDetails.isEmpty() || userdetails.childDetails != null){
-                Log.d("if", userdetails.childDetails.toString());
+                //Log.d("if", userdetails.childDetails.toString());
                 Intent home_page = new Intent(context, MainActivity.class);
                 startActivity(home_page);
             }else {
-                Log.d("else", userdetails.childDetails.toString());
+                //Log.d("else", userdetails.childDetails.toString());
                 Intent a = new Intent(context, AddChildName.class);
                 startActivity(a);
             }
@@ -132,7 +132,7 @@ public class SignInActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             //e.printStackTrace();StackTrace();
                         }
-                        Log.e("Json data", object.toString());
+                        //Log.e("Json data", object.toString());
                         try {
 
                             email=object.getString("email").trim();
@@ -249,7 +249,7 @@ public class SignInActivity extends AppCompatActivity {
                                     object.put("child_id", result.result_data.get(i).child_id);
                                     object.put("child_name", result.result_data.get(i).child_name);
                                     jsonArray1.put(object);
-                                    Log.d("data",jsonArray1.toString());
+                                    //Log.d("data",jsonArray1.toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -307,7 +307,7 @@ public class SignInActivity extends AppCompatActivity {
             for (android.content.pm.Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+                //Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
         } catch (PackageManager.NameNotFoundException e) {
 

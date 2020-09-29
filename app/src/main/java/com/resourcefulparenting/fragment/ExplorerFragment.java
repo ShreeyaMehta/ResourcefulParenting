@@ -130,7 +130,7 @@ public class ExplorerFragment extends Fragment {
             childs.clear();
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
-            Log.d("Arraym", String.valueOf(jsonArray.length()));
+            //Log.d("Arraym", String.valueOf(jsonArray.length()));
             for (int i=0;i<jsonArray.length();i++)
             {
                 ChildDetails childDetails=new ChildDetails();

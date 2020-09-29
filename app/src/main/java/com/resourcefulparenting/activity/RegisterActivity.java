@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         } catch (Exception e) {
                             //e.printStackTrace();StackTrace();
                         }
-                        Log.e("Json data", object.toString());
+                        //Log.e("Json data", object.toString());
                         try {
 
                             String firstname = object.getString("first_name").trim();
@@ -250,7 +250,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             call.enqueue(new Callback<RegisterResponse>() {
                 @Override
                 public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                    //  Log.d("response", String.valueOf(response.body()));
+                    //  //Log.d("response", String.valueOf(response.body()));
                     H.L("response=" + new Gson().toJson(response.body()));
                     loading.setVisibility(View.GONE);
 

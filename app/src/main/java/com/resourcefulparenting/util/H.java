@@ -31,7 +31,7 @@ public class H {
      * @param msg text message which will be shown in the log.
      */
     public static void L(String msg) {
-        Log.d("TAG", msg + "");
+        //Log.d("TAG", msg + "");
     }
 
 

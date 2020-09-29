@@ -18,7 +18,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshToken = FirebaseInstanceId.getInstance().getToken();
         H.L("fcmtoken"+refreshToken);
         Prefs.setRegistrationTokenID(MyFirebaseInstanceIDService.this, refreshToken);
-        Log.e("TAG", "Token" + Prefs.getRegistrationTokenID(this));
+        //Log.e("TAG", "Token" + Prefs.getRegistrationTokenID(this));
 
     }
 }
