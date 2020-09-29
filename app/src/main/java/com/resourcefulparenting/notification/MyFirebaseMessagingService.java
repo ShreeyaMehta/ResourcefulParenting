@@ -38,7 +38,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
        // String refreshToken = FirebaseInstanceId.getInstance().getToken();
         H.L("fcmtoken"+s);
         Prefs.setRegistrationTokenID(MyFirebaseMessagingService.this, s);
-        //Log.e("TAG", "Token" + Prefs.getRegistrationTokenID(this));
+        ////Log.e("TAG", "Token" + Prefs.getRegistrationTokenID(this));
     }
 
 

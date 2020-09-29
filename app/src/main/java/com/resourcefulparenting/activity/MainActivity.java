@@ -129,14 +129,14 @@ public class MainActivity extends AppCompatActivity implements MyAccountGeneralF
         }
         else
         {
-            Log.d("Else", "Inside else outside if");
+            //Log.d("Else", "Inside else outside if");
             if(fragment instanceof ExplorerFragment || fragment instanceof ActivityListingFragment
                     || fragment instanceof MyAccountGeneralFragment)
             {
                 bottomNavigation.setSelectedItemId(R.id.navigation_home);
-                Log.d("Else", "Inside else inside if");
+                //Log.d("Else", "Inside else inside if");
             }else {
-                Log.d("Else", "Inside else inside else");
+                //Log.d("Else", "Inside else inside else");
                 mgr.popBackStackImmediate();
 
             }

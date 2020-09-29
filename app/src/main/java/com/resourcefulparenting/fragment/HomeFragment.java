@@ -120,8 +120,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static androidx.core.content.FileProvider.getUriForFile;
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
@@ -277,7 +275,7 @@ public class HomeFragment extends Fragment {
         try {
             childDetails1.clear();
             JSONArray jsonArray=new JSONArray(Prefs.getChildDetails(context));
-            //  Log.d("Arraym", String.valueOf(jsonArray.length()));
+            //  //Log.d("Arraym", String.valueOf(jsonArray.length()));
             for (int i=0;i<jsonArray.length();i++)
             {
                 ChildDetails childDetails=new ChildDetails();

@@ -306,7 +306,7 @@ public class ChangeProfileFragment extends Fragment {
                                     object.put("child_id", childDetails1.get(j).getId());
                                     object.put("child_name", childDetails1.get(j).getChild_name());
                                     jsonArray1.put(object);
-                                    Log.d("data", jsonArray1.toString());
+                                    //Log.d("data", jsonArray1.toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -351,7 +351,7 @@ public class ChangeProfileFragment extends Fragment {
                                     object.put("child_id", childDetails1.get(j).getId());
                                     object.put("child_name", name);
                                     jsonArray1.put(object);
-                                    Log.d("data", jsonArray1.toString());
+                                    //Log.d("data", jsonArray1.toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -361,7 +361,7 @@ public class ChangeProfileFragment extends Fragment {
                                     object.put("child_id", childDetails1.get(j).getId());
                                     object.put("child_name", childDetails1.get(j).getChild_name());
                                     jsonArray1.put(object);
-                                    Log.d("data", jsonArray1.toString());
+                                    //Log.d("data", jsonArray1.toString());
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

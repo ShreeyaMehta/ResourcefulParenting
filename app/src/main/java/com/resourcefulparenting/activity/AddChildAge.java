@@ -172,9 +172,9 @@ public class AddChildAge extends AppCompatActivity implements AdapterView.OnItem
         // attaching data adapter to spinner
         month.setAdapter(dataAdapter1);
 
-        Log.d("Year", String.valueOf(year_));
-        Log.d("Month", String.valueOf(month_));
-        Log.d("Year", String.valueOf(date_));
+        //Log.d("Year", String.valueOf(year_));
+        //Log.d("Month", String.valueOf(month_));
+        //Log.d("Year", String.valueOf(date_));
 
     }
 
@@ -218,7 +218,7 @@ public class AddChildAge extends AppCompatActivity implements AdapterView.OnItem
                                 object.put("child_id", addChildResponse.childDetails.id);
                                 object.put("child_name", name);
                                 jsonArray1.put(object);
-                                Log.d("data",jsonArray1.toString());
+                                //Log.d("data",jsonArray1.toString());
                             Prefs.setChildDetails(context, jsonArray1.toString());
                             } catch (JSONException e) {
                                 e.printStackTrace();
