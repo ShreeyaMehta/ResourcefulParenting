@@ -262,6 +262,8 @@ public class SignInActivity extends AppCompatActivity {
                     } else {
                         H.T(context, loginResponse.message);
                     }
+                }else{
+                    Toast.makeText(SignInActivity.this, "Null Response", Toast.LENGTH_SHORT).show();
                 }
 
             }
